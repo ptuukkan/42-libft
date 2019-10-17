@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 12:52:10 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:11:20 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,20 @@ void	ft_toupper2(unsigned int i, char *c)
 	*c = ft_toupper(*c);
 }
 
-int		main(int argc, char **argv)
+int		main(void)
 {
-	char	**tab;
+	ft_putstr_fd("toto", 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(123123, 1);
+	ft_putchar_fd('\n', 1);
+	ft_putendl_fd("tata", 1);
 	
-	if (argc != 3)
-		return (1);
-	tab = ft_strsplit(argv[2], argv[3][0]);
-	if (tab != NULL)
-	{
-		while (*tab != NULL)
-		{
-			printf("%s\n", *tab);
-			tab++;
-		}
-	}
+	ft_putstr_fd("toto", 2);
+	ft_putchar_fd('\n', 2);
+	ft_putnbr_fd(123123, 2);
+	ft_putchar_fd('\n', 2);
+	ft_putendl_fd("tata", 2);
+	
+	
+	return (0);
 }

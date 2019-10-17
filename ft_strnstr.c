@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:50:34 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:50:36 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/17 14:25:25 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 	h = 0;
 	n = 0;
 	if (!s2)
-		return (s1);
+		return ((char *)s1);
 	while (s1[h] != '\0' && len > 0)
 	{
 		while (s1[h] == s2[n] && s1[h] != '\0' && s2[n] != '\0' && len > 0)
@@ -30,7 +30,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 			len--;
 		}
 		if (s2[n] == '\0')
-			return (s1 + (h - n));
+			return ((char *)s1 + (h - n));
 		h++;
 		len--;
 	}

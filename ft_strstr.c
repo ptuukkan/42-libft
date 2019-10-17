@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:50:50 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 12:03:33 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/17 14:26:10 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	h = 0;
 	n = 0;
 	if (!needle)
-		return (haystack);
+		return ((char *)haystack);
 	while (haystack[h] != '\0')
 	{
 		while (haystack[h] == needle[n] &&
@@ -30,7 +30,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 			n++;
 		}
 		if (needle[n] == '\0')
-			return (haystack + (h - n));
+			return ((char *)haystack + (h - n));
 		h++;
 	}
 	return (NULL);
