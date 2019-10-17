@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:46:38 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:46:41 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:26:01 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,10 @@ int	ft_strcmp(const char *s1, const char *s2)
 		s1++;
 		s2++;
 	}
-	return (*s1 - *s2);
+	if (*s1 > *s2)
+		return (1);
+	else if (*s1 < *s2)
+		return (-1);
+	else
+		return (0);
 }
