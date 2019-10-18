@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:44:06 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:44:09 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/18 11:46:09 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	if (n == 0)
 		return (0);
+	if (*str1 > *str2)
+		return (1);
 	else
-		return (*str1 - *str2);
+		return (-1);
 }
