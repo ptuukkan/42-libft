@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:50:42 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 14:25:45 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/18 14:11:37 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ char	*ft_strrchr(const char *s, int c)
 	{
 		if (s[i] == cc)
 		{
-			s = s + 1;
+			s = s + i;
 			i = 0;
 		}
 		i++;
 	}
 	if (*s == cc)
 		return ((char *)s);
+	if (s[i] == cc)
+		return ((char *)s + i);
 	else
 		return (NULL);
 }

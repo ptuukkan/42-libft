@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:38:15 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:38:28 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/18 15:29:10 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	ft_continue(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
+	if (c == '\e')
+		return (0);
 	if (c < 33 || c == '+')
 		return (2);
 	return (0);

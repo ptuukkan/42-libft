@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/18 11:58:33 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:45:49 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,18 +237,26 @@ void	test_strstr(void)
 
 void	test_strrchr(void)
 {
-	const char str[] = "http://www.tutorialspoint.com";
-	const char str2[] = "http://www.tutorialspoint.com";
-	const char ch = '.';
+	const char str[] = "bonjour";
+	const char str2[] = "bonjour";
+	const char ch = 'b';
 	char *ret;
 	char *ret2;
 
 	ret = strrchr(str, ch);
 	ret2 = ft_strrchr(str2, ch);
 	if (strcmp(ret, ret2) == 0)
+	{
 		printf("ft_strrchr OK\n");
+		printf("is %s", ret2);
+		printf(" should be %s\n", ret);
+	}
 	else
+	{
 		printf("ft_strrchr FAIL\n");
+		printf("is %s", ret2);
+		printf(" should be %s\n", ret);
+	}
 }
 
 void	test_strchr(void)
@@ -533,6 +541,7 @@ int		main(void)
 	test_strcat();
 	test_strncat();
 	test_strchr();
+	test_strrchr();
 	test_strstr();
 	test_strnstr();
 	test_strcmp();
@@ -545,5 +554,25 @@ int		main(void)
 	test_toupper();
 	test_tolower();
 
+	char	*dest;
+	dest = (char *)malloc(sizeof(*dest) * 15);
+	memset(dest, 0, 15);
+	memset(dest, 's', 13);
+
+	write(1, dest, 15);
+	dest = ft_strncpy(dest, "lorem", 8);
+	write(1, dest, 15);
+	
+	/*
+	char **tab;
+
+	tab = ft_strsplit("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
+
+	while (*tab)
+	{
+		printf("%s\n", *tab);
+		tab++;
+	}
+*/
 	return (0);
 }

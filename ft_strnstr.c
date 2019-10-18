@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:50:34 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 14:25:25 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:00:29 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 			return ((char *)s1 + (h - n));
 		h++;
 		len--;
+		n = 0;
 	}
 	return (NULL);
 }

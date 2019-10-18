@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/10/18 12:49:31 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/10/18 14:01:19 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ OBJECTS = ${SRCS:.c=.o}
 
 INC = ./
 
-GCC = gcc -Werror -Wextra -Wall
+GCC = gcc -Werror -Wextra -Wall -g
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:50:50 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 14:26:10 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:00:07 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		if (needle[n] == '\0')
 			return ((char *)haystack + (h - n));
 		h++;
+		n = 0;
 	}
 	return (NULL);
 }
