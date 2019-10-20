@@ -38,7 +38,7 @@ char		*ft_itoa(int n)
 
 	if (!(result = ft_strnew(sizeof(char) * 11)))
 		return (NULL);
-	if (n == -2147483648)
+	if (n == 2147483647)
 		return (result = ft_strcpy(result, "-2147483648"));
 	i = 0;
 	neg = 0;

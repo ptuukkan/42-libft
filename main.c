@@ -32,6 +32,34 @@ void	ft_toupper2(unsigned int i, char *c)
 	*c = ft_toupper(*c);
 }
 
+void	test_lst(void)
+{
+	t_list	*lst;
+	int		i;
+	char	str[] = "toto";
+
+	i = 42;
+	lst = ft_lstnew(str, sizeof(str));
+	if (lst == NULL)
+		return;
+	if (ft_strcmp("toto", lst->content) == 0 && lst->content_size == 5 && lst->next == NULL)
+		printf("ft_lstnew OK\n");
+	else
+	{
+		printf("ft_lstnew FAIL, aborting following lst tests\n");
+		return;
+	}
+	ft_lstadd(&lst, ft_lstnew(&i, sizeof(i)));
+	if (*(int *)lst->content == 42 && strcmp("toto", lst->next->content) == 0)
+		printf("ft_lstadd OK\n");
+	else
+	{
+		printf("ft_lstadd FAIL, aborting following lst tests\n");
+		return;
+	}
+	ft_lstadd(&lst, ft_lstnew("tatata", 7));
+}
+
 void	test_tolower(void)
 {
 	if (ft_tolower('a') == 'a' &&
@@ -321,8 +349,8 @@ void	test_strncpy(void)
 {
 	char	*str;
 	char	*str2;
-	str = strdup("This string");
-	str2 = strdup("This string");
+	str = _strdup("This string");
+	str2 = _strdup("This string");
 	str = strncpy(str, "toto", 8);
 	str2 = ft_strncpy(str2, "toto", 8);
 	if (strcmp(str, str2) == 0)
@@ -339,8 +367,8 @@ void	test_strcpy(void)
 {
 	char	*str;
 	char	*str2;
-	str = strdup("This string");
-	str2 = strdup("This string");
+	str = _strdup("This string");
+	str2 = _strdup("This string");
 	str = strcpy(str, "toto");
 	str2 = ft_strcpy(str2, "toto");
 	if (strcmp(str, str2) == 0)
@@ -357,7 +385,7 @@ void	test_strdup(void)
 {
 	char	*str;
 	char	*str2;
-	str = strdup("This string");
+	str = _strdup("This string");
 	str2 = ft_strdup("This string");
 	str = strncpy(str, "toto", 4);
 	str2 = strncpy(str2, "toto", 4);
@@ -448,7 +476,7 @@ void	test_memccpy(void)
 	dest2 = (char *)malloc(sizeof(char) * 50);
 	dest = strcpy(dest, "bye");
 	dest2 = strcpy(dest2, "bye");
-	dptr = (char *)memccpy(dest, src, 'e', 11);
+	dptr = (char *)_memccpy(dest, src, 'e', 11);
 	dptr2 = (char *)ft_memccpy(dest2, src2, 'e', 11);
 	printf("%s\n", dest);
 	printf("%s\n", dest2);
@@ -493,9 +521,9 @@ void	test_bzero(void)
 {
 	char	*str;
 	char	*str2;
-	str = strdup("This string");
-	str2 = strdup("This string");
-	bzero(str, 5);
+	str = _strdup("This string");
+	str2 = _strdup("This string");
+	ft_bzero(str, 5);
 	ft_bzero(str2, 5);
 	if (memcmp(str, str2, 11) == 0)
 	{
@@ -511,8 +539,8 @@ void	test_memset(void)
 {
 	char	*str;
 	char	*str2;
-	str = strdup("This string");
-	str2 = strdup("This string");
+	str = _strdup("This string");
+	str2 = _strdup("This string");
 	str = (char *)memset(str, '$', 5);
 	str2 = (char *)ft_memset(str2, '$', 5);
 	if (strcmp(str, str2) == 0)
@@ -527,6 +555,7 @@ void	test_memset(void)
 
 int		main(void)
 {
+	/*
 	test_memset();
 	test_bzero();
 	test_memcpy();
@@ -553,7 +582,10 @@ int		main(void)
 	test_isprint();
 	test_toupper();
 	test_tolower();
+	*/
+	test_lst();
 
+	/*
 	char	*dest;
 	dest = (char *)malloc(sizeof(*dest) * 15);
 	memset(dest, 0, 15);
@@ -563,7 +595,7 @@ int		main(void)
 	dest = ft_strncpy(dest, "lorem", 8);
 	write(1, dest, 15);
 	
-	/*
+
 	char **tab;
 
 	tab = ft_strsplit("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
@@ -574,5 +606,6 @@ int		main(void)
 		tab++;
 	}
 */
+	system("pause");
 	return (0);
 }
