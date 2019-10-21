@@ -32,9 +32,16 @@ void	ft_toupper2(unsigned int i, char *c)
 	*c = ft_toupper(*c);
 }
 
+void	lst_free(void *content, size_t content_size)
+{
+	(void)content_size;
+	free(content);
+}
+
 void	test_lst(void)
 {
 	t_list	*lst;
+	t_list	*temp;
 	int		i;
 	char	str[] = "toto";
 
@@ -58,6 +65,34 @@ void	test_lst(void)
 		return;
 	}
 	ft_lstadd(&lst, ft_lstnew("tatata", 7));
+	temp = lst;
+	lst = lst->next;
+	ft_lstdelone(&temp, &lst_free);
+	if (temp != NULL)
+	{
+		printf("ft_lstdelone FAIL, aborting following lst tests\n");
+		return;
+	}
+	temp = lst;
+	lst = lst->next;
+	ft_lstdelone(&temp, &lst_free);
+	if (temp != NULL)
+	{
+		printf("ft_lstdelone FAIL, aborting following lst tests\n");
+		return;
+	}
+	if (ft_strcmp("toto", lst->content) == 0 && lst->content_size == 5 && lst->next == NULL)
+		printf("ft_lstdelone OK\n");
+	else
+	{
+		printf("ft_lstdelone FAIL, aborting following lst tests\n");
+		return;
+	}
+	ft_lstadd(&lst, ft_lstnew("tatata", 7));
+	ft_lstadd(&lst, ft_lstnew("doggo", 6));
+	ft_lstadd(&lst, ft_lstnew("totoro", 7));
+	ft_lstiter(lst, &ft_lsttoupper);
+	asdasds
 }
 
 void	test_tolower(void)

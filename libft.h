@@ -83,5 +83,9 @@ void				ft_lstadd(t_list **alst, t_list  *new);
 void				ft_lstiter(t_list *lst, void(*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstapp(t_list **alst, t_list  *new);
+void				ft_strtoupper(char *str);
+void				ft_strtolower(char *str);
+void				ft_lsttoupper(t_list *elem);
+void				ft_lsttolower(t_list *elem);
 
 #endif
