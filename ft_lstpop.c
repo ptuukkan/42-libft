@@ -1,0 +1,15 @@
+#include "libft.h"
+
+void	*ft_lstpop(t_list **alst)
+{
+	t_list	*temp;
+	void	*content;
+
+	temp = *alst;
+	if (temp == NULL)
+		return (NULL);
+	content = temp->content;
+	*alst = (*alst)->next;
+	free(temp);
+	return (content);
+}

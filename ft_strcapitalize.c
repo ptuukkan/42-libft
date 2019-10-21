@@ -12,7 +12,16 @@
 
 #include "libft.h"
 
-void	ft_lstprint(t_list *elem)
+void	ft_strcapitalize(char *str)
 {	
-	ft_putstr((char *)elem->content);
+	int	i;
+	i = 1;
+
+	str[0] = ft_toupper(str[0]);
+	while (str[i] != '\0')
+	{
+
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
 }

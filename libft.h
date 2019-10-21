@@ -87,5 +87,10 @@ void				ft_strtoupper(char *str);
 void				ft_strtolower(char *str);
 void				ft_lsttoupper(t_list *elem);
 void				ft_lsttolower(t_list *elem);
+void				ft_lstprint(t_list *elem);
+t_list				*ft_lstcapitalize(t_list *elem);
+void				ft_strcapitalize(char *str);
+void				*ft_lstfold(t_list *lst, void *(*f)(const void *, const void *));
+void				*ft_lstpop(t_list **alst);
 
 #endif

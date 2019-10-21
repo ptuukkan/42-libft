@@ -38,6 +38,23 @@ void	lst_free(void *content, size_t content_size)
 	free(content);
 }
 
+void	ft_lstdel2(t_list **alst, void(*del)(void *, size_t))
+{
+	t_list	*temp;
+
+	if (*alst == NULL)
+		return;
+	while (*alst != NULL)
+	{
+		if ((*alst)->content != NULL)
+			(*del)((*alst)->content, (*alst)->content_size);
+		temp = *alst;
+		*alst = (*alst)->next;
+		free(temp);
+		temp = NULL;
+	}
+}
+
 void	test_lst(void)
 {
 	t_list	*lst;
@@ -49,8 +66,8 @@ void	test_lst(void)
 	lst = ft_lstnew(str, sizeof(str));
 	if (lst == NULL)
 		return;
-	if (ft_strcmp("toto", lst->content) == 0 && lst->content_size == 5 && lst->next == NULL)
-		printf("ft_lstnew OK\n");
+	if (strcmp("toto", lst->content) == 0 && lst->content_size == 5 && lst->next == NULL)
+		printf("ft_lstnew OK\t\n");
 	else
 	{
 		printf("ft_lstnew FAIL, aborting following lst tests\n");
@@ -58,7 +75,7 @@ void	test_lst(void)
 	}
 	ft_lstadd(&lst, ft_lstnew(&i, sizeof(i)));
 	if (*(int *)lst->content == 42 && strcmp("toto", lst->next->content) == 0)
-		printf("ft_lstadd OK\n");
+		printf("ft_lstadd OK\t\n");
 	else
 	{
 		printf("ft_lstadd FAIL, aborting following lst tests\n");
@@ -81,8 +98,8 @@ void	test_lst(void)
 		printf("ft_lstdelone FAIL, aborting following lst tests\n");
 		return;
 	}
-	if (ft_strcmp("toto", lst->content) == 0 && lst->content_size == 5 && lst->next == NULL)
-		printf("ft_lstdelone OK\n");
+	if (strcmp("toto", lst->content) == 0 && lst->content_size == 5 && lst->next == NULL)
+		printf("ft_lstdelone OK\t\n");
 	else
 	{
 		printf("ft_lstdelone FAIL, aborting following lst tests\n");
@@ -92,7 +109,60 @@ void	test_lst(void)
 	ft_lstadd(&lst, ft_lstnew("doggo", 6));
 	ft_lstadd(&lst, ft_lstnew("totoro", 7));
 	ft_lstiter(lst, &ft_lsttoupper);
-	asdasds
+	if (strcmp("TOTORO", lst->content) == 0 &&
+		strcmp("DOGGO", lst->next->content) == 0 &&
+		strcmp("TATATA", lst->next->next->content) == 0 &&
+		strcmp("TOTO", lst->next->next->next->content) == 0)
+		printf("ft_lstiter OK\t\n");
+	else
+		printf("ft_lstiter FAIL\t\n");
+	temp = ft_lstmap(lst, &ft_lstcapitalize);
+	if (strcmp("TOTORO", lst->content) == 0 &&
+		strcmp("Totoro", temp->content) == 0 &&
+		strcmp("Doggo", temp->next->content) == 0 &&
+		strcmp("Tatata", temp->next->next->content) == 0 &&
+		strcmp("Toto", temp->next->next->next->content) == 0)
+		
+	{
+		printf("ft_lstmap OK\t\n");
+		ft_lstdel2(&temp, &lst_free);
+	}
+	else
+		printf("ft_lstmap FAIL\t\n");
+	ft_lstdel(&lst, &lst_free);
+	if (lst == NULL)
+		printf("ft_lstdel OK\t\n");
+	else
+		printf("ft_lstdel FAIL\t\n");
+}
+
+void	test_bonuslst(void)
+{
+	t_list	*lst;
+	char	*str;
+	void	*data;
+
+	lst = NULL;
+	ft_lstadd(&lst, ft_lstnew("tatata", 7));
+	ft_lstadd(&lst, ft_lstnew("doggo", 6));
+	ft_lstapp(&lst, ft_lstnew("totoro", 7));
+	if (strcmp("doggo", lst->content) == 0 &&
+		strcmp("tatata", lst->next->content) == 0 &&
+		strcmp("totoro", lst->next->next->content) == 0)
+		printf("ft_lstapp OK\t\n");
+	else
+		printf("ft_lstapp FAIL\t\n");
+	str = ft_lstfold(lst, &ft_strjoin);
+	if (strcmp("doggotatatatotoro", str) == 0)
+		printf("ft_lstfold OK\t\n");
+	else
+		printf("ft_lstfold FAIL\t\n");
+	data = ft_lstpop(&lst);
+	if (strcmp("doggo", data) == 0 &&
+		strcmp("tatata", lst->content) == 0)
+		printf("ft_lstpop OK\t\n");
+	else
+		printf("ft_lstpop FAIL\t\n");
 }
 
 void	test_tolower(void)
@@ -101,10 +171,10 @@ void	test_tolower(void)
 		ft_tolower('A') == 'a' &&
 		ft_tolower('5') == '5')
 	{
-		printf("ft_tolower OK\n");
+		printf("ft_tolower OK\t\n");
 	}
 	else
-		printf("ft_tolower FAIL\n");
+		printf("ft_tolower FAIL\t\n");
 }
 
 void	test_toupper(void)
@@ -113,10 +183,10 @@ void	test_toupper(void)
 		ft_toupper('A') == 'A' &&
 		ft_toupper('5') == '5')
 	{
-		printf("ft_toupper OK\n");
+		printf("ft_toupper OK\t\n");
 	}
 	else
-		printf("ft_toupper FAIL\n");
+		printf("ft_toupper FAIL\t\n");
 }
 
 void	test_isprint(void)
@@ -140,10 +210,10 @@ void	test_isprint(void)
 		i++;
 	}
 	if (ret == ret2)
-		printf("ft_isprint OK\n");
+		printf("ft_isprint OK\t\n");
 	else
 	{
-		printf("ft_isprint FAIL\n");
+		printf("ft_isprint FAIL\t\n");
 		printf("is %d", ret2);
 		printf("should be %d\n", ret);
 	}
@@ -170,9 +240,9 @@ void	test_isascii(void)
 		i++;
 	}
 	if (ret == ret2)
-		printf("ft_isascii OK\n");
+		printf("ft_isascii OK\t\n");
 	else
-		printf("ft_isascii FAIL\n");
+		printf("ft_isascii FAIL\t\n");
 }
 
 void	test_isalnum(void)
@@ -189,9 +259,9 @@ void	test_isalnum(void)
 	ret2 += ft_isalnum('5');
 	ret2 += ft_isalnum('#');
 	if (ret == ret2)
-		printf("ft_isalnum OK\n");
+		printf("ft_isalnum OK\t\n");
 	else
-		printf("ft_isalnum FAIL\n");
+		printf("ft_isalnum FAIL\t\n");
 }
 
 void	test_isdigit(void)
@@ -206,9 +276,9 @@ void	test_isdigit(void)
 	ret2 += ft_isdigit('A');
 	ret2 += ft_isdigit('5');
 	if (ret == ret2)
-		printf("ft_isdigit OK\n");
+		printf("ft_isdigit OK\t\n");
 	else
-		printf("ft_isdigit FAIL\n");
+		printf("ft_isdigit FAIL\t\n");
 }
 
 void	test_isalpha(void)
@@ -223,51 +293,59 @@ void	test_isalpha(void)
 	ret2 += ft_isalpha('A');
 	ret2 += ft_isalpha('5');
 	if (ret == ret2)
-		printf("ft_isalpha OK\n");
+		printf("ft_isalpha OK\t\n");
 	else
-		printf("ft_isalpha FAIL\n");
+		printf("ft_isalpha FAIL\t\n");
 }
 
 void	test_atoi(void)
 {
 	if (atoi("  -8401") == ft_atoi("  -8401"))
-		printf("ft_atoi OK\n");
+		printf("ft_atoi OK\t\n");
 	else
-		printf("ft_atoi FAIL\n");
+		printf("ft_atoi FAIL\t\n");
 }
 
 void	test_strncmp(void)
 {
-	int	ret;
 	int	ret2;
+	int	result;
 
-	ret = strncmp("toto", "toto", 4);
+	result = 0;
 	ret2 = ft_strncmp("toto", "toto", 4);
-	ret += strncmp("a", "h", 1);
-	ret2 += ft_strncmp("a", "h", 1);
-	ret += strncmp("doggo", "abc", 3);
-	ret2 += ft_strncmp("doggo", "abc", 3);
-	if (ret == ret2)
-		printf("ft_strncmp OK\n");
+	if (ret2 == 0)
+		result++;
+	ret2 = ft_strncmp("a", "h", 1);
+	if (ret2 < 0)
+		result++;
+	ret2 = ft_strncmp("doggo", "dbc", 3);
+	if (ret2 > 0)
+		result++;
+	if (result == 3)
+		printf("ft_strncmp OK\t\n");
 	else
-		printf("ft_strncmp FAIL\n");
+		printf("ft_strncmp FAIL\t\n");
 }
 
 void	test_strcmp(void)
 {
-	int	ret;
+	int	result;
 	int	ret2;
 
-	ret = strcmp("toto", "toto");
+	result = 0;
 	ret2 = ft_strcmp("toto", "toto");
-	ret += strcmp("a", "h");
-	ret2 += ft_strcmp("a", "h");
-	ret += strcmp("doggo", "abc");
-	ret2 += ft_strcmp("doggo", "abc");
-	if (ret == ret2)
-		printf("ft_strcmp OK\n");
+	if (ret2 == 0)
+		result++;
+	ret2 = ft_strcmp("a", "h");
+	if (ret2 < 0)
+		result++;
+	ret2 = ft_strcmp("doggo", "dbc");
+	if (ret2 > 0)
+		result++;
+	if (result == 3)
+		printf("ft_strcmp OK\t\n");
 	else
-		printf("ft_strcmp FAIL\n");
+		printf("ft_strcmp FAIL\t\n");
 }
 
 void	test_strnstr(void)
@@ -278,9 +356,9 @@ void	test_strnstr(void)
 
 	ptr = ft_strnstr(largestring, smallstring, 4);
 	if (ptr == NULL)
-		printf("ft_strnstr OK\n");
+		printf("ft_strnstr OK\t\n");
 	else
-		printf("ft_strnstr FAIL\n");
+		printf("ft_strnstr FAIL\t\n");
 }
 
 void	test_strstr(void)
@@ -293,9 +371,9 @@ void	test_strstr(void)
 	ret = strstr(haystack, needle);
 	ret2 = ft_strstr(haystack, needle);
 	if (strcmp(ret, ret2) == 0)
-		printf("ft_strstr OK\n");
+		printf("ft_strstr OK\t\n");
 	else
-		printf("ft_strstr FAIL\n");
+		printf("ft_strstr FAIL\t\n");
 }
 
 void	test_strrchr(void)
@@ -310,13 +388,11 @@ void	test_strrchr(void)
 	ret2 = ft_strrchr(str2, ch);
 	if (strcmp(ret, ret2) == 0)
 	{
-		printf("ft_strrchr OK\n");
-		printf("is %s", ret2);
-		printf(" should be %s\n", ret);
+		printf("ft_strrchr OK\t\n");
 	}
 	else
 	{
-		printf("ft_strrchr FAIL\n");
+		printf("ft_strrchr FAIL\t\n");
 		printf("is %s", ret2);
 		printf(" should be %s\n", ret);
 	}
@@ -333,9 +409,9 @@ void	test_strchr(void)
 	ret = strchr(str, ch);
 	ret2 = ft_strchr(str2, ch);
 	if (strcmp(ret, ret2) == 0)
-		printf("ft_strchr OK\n");
+		printf("ft_strchr OK\t\n");
 	else
-		printf("ft_strchr FAIL\n");
+		printf("ft_strchr FAIL\t\n");
 }
 
 void	test_strncat(void)
@@ -351,12 +427,38 @@ void	test_strncat(void)
 	dest2 = ft_strncat(dest2, "toto", 2);
 	if (strcmp(dest, dest2) == 0)
 	{
-		printf("ft_strncat OK\n");
+		printf("ft_strncat OK\t\n");
 		free(dest);
 		free(dest2);
 	}
 	else
-		printf("ft_strncat FAIL\n");
+		printf("ft_strncat FAIL\t\n");
+}
+
+void	test_strlcat(void)
+{
+	char	*dest;
+	char	*dest2;
+	size_t	ret;
+	size_t	ret2;
+
+	dest = (char *)malloc(sizeof(char) * 50);
+	dest2 = (char *)malloc(sizeof(char) * 50);
+	memset(dest, 0, 50);
+	memset(dest2, 0, 50);
+	dest = strcpy(dest, "This is destination");
+	dest2 = strcpy(dest2, "This is destination");
+	ret = ft_strlcat(dest, "toto", 10);
+	ret2 = ft_strlcat(dest2, "toto", 10);
+	if (strcmp(dest, dest2) == 0 &&
+		ret == ret2)
+	{
+		printf("ft_strlcat OK\t\n");
+		free(dest);
+		free(dest2);
+	}
+	else
+		printf("ft_strlcat FAIL\t\n");
 }
 
 void	test_strcat(void)
@@ -372,12 +474,12 @@ void	test_strcat(void)
 	dest2 = ft_strcat(dest2, "toto");
 	if (strcmp(dest, dest2) == 0)
 	{
-		printf("ft_strcat OK\n");
+		printf("ft_strcat OK\t\n");
 		free(dest);
 		free(dest2);
 	}
 	else
-		printf("ft_strcat FAIL\n");
+		printf("ft_strcat FAIL\t\n");
 }
 
 void	test_strncpy(void)
@@ -390,12 +492,12 @@ void	test_strncpy(void)
 	str2 = ft_strncpy(str2, "toto", 8);
 	if (strcmp(str, str2) == 0)
 	{
-		printf("ft_strncpy OK\n");
+		printf("ft_strncpy OK\t\n");
 		free(str);
 		free(str2);
 	}
 	else
-		printf("ft_strncpy FAIL\n");
+		printf("ft_strncpy FAIL\t\n");
 }
 
 void	test_strcpy(void)
@@ -408,12 +510,12 @@ void	test_strcpy(void)
 	str2 = ft_strcpy(str2, "toto");
 	if (strcmp(str, str2) == 0)
 	{
-		printf("ft_strcpy OK\n");
+		printf("ft_strcpy OK\t\n");
 		free(str);
 		free(str2);
 	}
 	else
-		printf("ft_strcpy FAIL\n");
+		printf("ft_strcpy FAIL\t\n");
 }
 
 void	test_strdup(void)
@@ -426,12 +528,12 @@ void	test_strdup(void)
 	str2 = strncpy(str2, "toto", 4);
 	if (strcmp(str, str2) == 0)
 	{
-		printf("ft_strdup OK\n");
+		printf("ft_strdup OK\t\n");
 		free(str);
 		free(str2);
 	}
 	else
-		printf("ft_strdup FAIL\n");
+		printf("ft_strdup FAIL\t\n");
 }
 
 void	test_strlen(void)
@@ -442,26 +544,38 @@ void	test_strlen(void)
 	ret = strlen("toto");
 	ret2 = ft_strlen("toto");
 	if (ret == ret2)
-		printf("ft_strlen OK\n");
+		printf("ft_strlen OK\t\n");
 	else
-		printf("ft_strlen FAIL\n");
+		printf("ft_strlen FAIL\t\n");
 }
 
 void	test_memcmp(void)
 {
-	int	ret;
+	int	result;
 	int	ret2;
+	int	i;
+	int	i2;
 
-	ret = memcmp("toto", "toto", 4);
+	i = 42;
+	i2 = 42;
+	result = 0;
 	ret2 = ft_memcmp("toto", "toto", 4);
-	ret += memcmp("a", "h", 1);
-	ret2 += ft_memcmp("a", "h", 1);
-	ret += memcmp("doggo", "abc", 3);
-	ret2 += ft_memcmp("doggo", "abc", 3);
-	if (ret == ret2)
-		printf("ft_memcmp OK\n");
+	if (ret2 == 0)
+		result++;
+	ret2 = ft_memcmp("a", "h", 1);
+	if (ret2 < 0)
+		result++;
+	ret2 = ft_memcmp("doggo", "dbc", 3);
+	if (ret2 > 0)
+		result++;
+
+	ret2 = ft_memcmp(&i, &i2, sizeof(i));
+	if (ret2 == 0)
+		result++;
+	if (result == 4)
+		printf("ft_memcmp OK\t\n");
 	else
-		printf("ft_memcmp FAIL\n");
+		printf("ft_memcmp FAIL\t\n");
 }
 
 void	test_memchr(void)
@@ -475,27 +589,27 @@ void	test_memchr(void)
 	ret = memchr(str, ch, strlen(str));
 	ret2 = ft_memchr(str2, ch, strlen(str2));
 	if (strcmp(ret, ret2) == 0)
-		printf("ft_memchr OK\n");
+		printf("ft_memchr OK\t\n");
 	else
-		printf("ft_memchr FAIL\n");
+		printf("ft_memchr FAIL\t\n");
 }
 
 void	test_memmove(void)
 {
-	char	*src;
-	char	*src2;
-	src = (char *)malloc(sizeof(char) * 50);
-	src2 = (char *)malloc(sizeof(char) * 50);
-	src = memmove(src + 5, src, strlen(src) + 1);
-	src2 = ft_memmove(src2 + 5, src2, strlen(src2) + 1);
-	if (strcmp(src, src2) == 0)
+	char	src[] = "This test string";
+	char	src2[] = "This test string";
+	char	*dest;
+	char	*dest2;
+	dest = src + 1;
+	dest2 = src2 + 1;
+	dest = memmove(dest, src, 5);
+	dest2 = ft_memmove(dest2, src2, 5);
+	if (strcmp(dest, dest2) == 0)
 	{
-		printf("ft_memmove OK\n");
-		//free(src);
-		//free(src2);
+		printf("ft_memmove OK\t\n");
 	}
 	else
-		printf("ft_memmove FAIL\n");
+		printf("ft_memmove FAIL\t\n");
 }
 
 void	test_memccpy(void)
@@ -509,22 +623,20 @@ void	test_memccpy(void)
 	
 	dest = (char *)malloc(sizeof(char) * 50);
 	dest2 = (char *)malloc(sizeof(char) * 50);
-	dest = strcpy(dest, "bye");
-	dest2 = strcpy(dest2, "bye");
+	memset(dest, '\0', 50);
+	memset(dest2, '\0', 50);
+	dest = strcpy(dest, "byebyebyebyebyebyebyebye");
+	dest2 = strcpy(dest2, "byebyebyebyebyebyebyebye");
 	dptr = (char *)_memccpy(dest, src, 'e', 11);
 	dptr2 = (char *)ft_memccpy(dest2, src2, 'e', 11);
-	printf("%s\n", dest);
-	printf("%s\n", dest2);
-	printf("%s\n", dptr);
-	printf("%s\n", dptr2);
 	if (strcmp(dest, dest2) == 0)
 	{
-		printf("ft_memccpy OK\n");
+		printf("ft_memccpy OK\t\n");
 		free(dest);
 		free(dest2);
 	}
 	else
-		printf("ft_memccpy FAIL\n");
+		printf("ft_memccpy FAIL\t\n");
 }
 
 void	test_memcpy(void)
@@ -535,18 +647,18 @@ void	test_memcpy(void)
 	char		*dest2;
 	dest = (char *)malloc(sizeof(char) * 50);
 	dest2 = (char *)malloc(sizeof(char) * 50);
-	dest = strcpy(dest, "bye");
-	dest2 = strcpy(dest2, "bye");
-	dest = (char *)memcpy(dest, src, 11);
-	dest2 = (char *)ft_memcpy(dest2, src2, 11);
+	dest = (char *)memcpy(dest, src, sizeof(src));
+	dest2 = (char *)ft_memcpy(dest2, src2, sizeof(src2));
 	if (strcmp(dest, dest2) == 0)
 	{
-		printf("ft_memcpy OK\n");
+		printf("ft_memcpy OK\t\n");
 		free(dest);
 		free(dest2);
 	}
 	else
-		printf("ft_memcpy FAIL\n");
+	{
+		printf("ft_memcpy FAIL\t\n");
+	}
 	
 
 
@@ -562,12 +674,12 @@ void	test_bzero(void)
 	ft_bzero(str2, 5);
 	if (memcmp(str, str2, 11) == 0)
 	{
-		printf("ft_bzero OK\n");
+		printf("ft_bzero OK\t\n");
 		free(str);
 		free(str2);
 	}
 	else
-		printf("ft_bzero FAIL\n");
+		printf("ft_bzero FAIL\t\n");
 }
 
 void	test_memset(void)
@@ -577,20 +689,20 @@ void	test_memset(void)
 	str = _strdup("This string");
 	str2 = _strdup("This string");
 	str = (char *)memset(str, '$', 5);
-	str2 = (char *)ft_memset(str2, '$', 5);
+	str2 = ft_memset(str2, '$', 5);
 	if (strcmp(str, str2) == 0)
 	{
-		printf("ft_memset OK\n");
+		printf("ft_memset OK\t\n");
 		free(str);
 		free(str2);
 	}
 	else
-		printf("ft_memset FAIL\n");
+		printf("ft_memset FAIL\t\n");
 }
 
 int		main(void)
 {
-	/*
+	
 	test_memset();
 	test_bzero();
 	test_memcpy();
@@ -604,6 +716,7 @@ int		main(void)
 	test_strncpy();
 	test_strcat();
 	test_strncat();
+	test_strlcat();
 	test_strchr();
 	test_strrchr();
 	test_strstr();
@@ -617,8 +730,9 @@ int		main(void)
 	test_isprint();
 	test_toupper();
 	test_tolower();
-	*/
+
 	test_lst();
+	test_bonuslst();
 
 	/*
 	char	*dest;

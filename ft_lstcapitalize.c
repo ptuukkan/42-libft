@@ -12,7 +12,13 @@
 
 #include "libft.h"
 
-void	ft_lstprint(t_list *elem)
+t_list	*ft_lstcapitalize(t_list *elem)
 {	
-	ft_putstr((char *)elem->content);
+	t_list	*lst;
+
+	lst = ft_lstnew(elem->content, elem->content_size);
+	if (lst == NULL)
+		return (NULL);
+	ft_strcapitalize((char *)lst->content);
+	return (lst);
 }
