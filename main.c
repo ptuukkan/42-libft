@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 17:42:24 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:49:21 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void	test_part2(void)
 	free(str2);
 	free(str);
 	char **tab;
-	tab = ft_strsplit("*hello*fellow***students*");
+	tab = ft_strsplit("*hello*fellow***students*", '*');
 	if (!tab)
 	{
 		printf("ft_strsplit FAIL\t\n");
