@@ -6,11 +6,9 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:51:28 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:51:29 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:16:00 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_toupper(int c)
 {

@@ -6,16 +6,14 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:40:02 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:40:04 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:00:26 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
-		return (4);
+		return (1);
 	else
 		return (0);
 }

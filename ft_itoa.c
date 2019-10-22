@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:04:38 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 15:48:43 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:00:51 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char		*ft_itoa(int n)
 
 	if (!(result = ft_strnew(sizeof(char) * 11)))
 		return (NULL);
-	if (n == 2147483647)
+	if (n == -2147483648)
 		return (result = ft_strcpy(result, "-2147483648"));
 	i = 0;
 	neg = 0;

@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_lstjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 15:55:45 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 12:48:59 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 11:48:13 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/22 14:07:51 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+void	*ft_lstjoin(const void *s1, const void *s2)
 {
-	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return ;
-	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = n * -1;
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	if (n < 10)
-		ft_putchar(n + '0');
+	void	*joinstr;
+
+	joinstr = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	if (joinstr == NULL)
+		return (NULL);
+	joinstr = ft_strcat(joinstr, s1);
+	joinstr = ft_strcat(joinstr, s2);
+	return (joinstr);
 }

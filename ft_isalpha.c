@@ -6,17 +6,15 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:39:39 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:53:59 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:00:01 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isalpha(int c)
 {
 	if (c >= 65 && c <= 90)
 		return (1);
 	if (c >= 97 && c <= 122)
-		return (2);
+		return (1);
 	return (0);
 }

@@ -6,11 +6,9 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:46:38 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/18 15:51:34 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:09:15 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

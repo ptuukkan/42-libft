@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:52:25 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 16:17:55 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:21:11 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <string.h>
 # include <stdlib.h>
-//# include <unistd.h>
+# include <unistd.h>
 
 typedef struct		s_list
 {
@@ -79,10 +79,11 @@ void				ft_putnbr_fd(int n, int fd);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void(*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void(*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list  *new);
+void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void(*f)(t_list *elem));
+void				*ft_lstjoin(const void *s1, const void *s2);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-void				ft_lstapp(t_list **alst, t_list  *new);
+void				ft_lstapp(t_list **alst, t_list *new);
 void				ft_strtoupper(char *str);
 void				ft_strtolower(char *str);
 void				ft_lsttoupper(t_list *elem);
@@ -90,7 +91,8 @@ void				ft_lsttolower(t_list *elem);
 void				ft_lstprint(t_list *elem);
 t_list				*ft_lstcapitalize(t_list *elem);
 void				ft_strcapitalize(char *str);
-void				*ft_lstfold(t_list *lst, void *(*f)(const void *, const void *));
+void				*ft_lstfold(t_list *lst,
+						void *(*f)(const void *, const void *));
 void				*ft_lstpop(t_list **alst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:50:30 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 16:04:12 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 12:50:23 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	//write(fd, s, ft_strlen(s));
+	write(fd, s, ft_strlen(s));
 }

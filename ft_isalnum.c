@@ -6,19 +6,17 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:39:21 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:39:28 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 14:59:50 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isalnum(int c)
 {
 	if (c >= 65 && c <= 90)
 		return (1);
 	if (c >= 97 && c <= 122)
-		return (2);
+		return (1);
 	if (c >= 48 && c <= 57)
-		return (4);
+		return (1);
 	return (0);
 }

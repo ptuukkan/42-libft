@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:21:48 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 15:02:57 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:09:13 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char		**ft_strsplit(char const *s, char c)
 		}
 		if (len > 0)
 			tab[i++] = ft_strsub(s, start - len, len);
-		start++;
+		if (s[start] != '\0')
+			start++;
 	}
 	tab[i] = 0;
 	return (tab);

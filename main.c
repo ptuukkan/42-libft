@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/18 16:45:49 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:42:24 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,28 @@ void	printarray(int *arr, int n)
 		i++;
 	}
 }
-
-void	ft_toupper2(unsigned int i, char *c)
+void	ft_iteritest(unsigned int i, char *c)
 {
-	printf("%d\n", i);
-	*c = ft_toupper(*c);
+	*c = *c + i;
+}
+
+char	ft_mapitertest(char c)
+{
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	else
+		return (c);
+}
+
+char	ft_mapiteritest(unsigned int i, char c)
+{
+	return (c + i);
+}
+
+void	ft_toupper2(char *c)
+{
+	if (*c >= 97 && *c <= 122)
+		*c = *c - 32;
 }
 
 void	lst_free(void *content, size_t content_size)
@@ -54,6 +71,192 @@ void	ft_lstdel2(t_list **alst, void(*del)(void *, size_t))
 		temp = NULL;
 	}
 }
+
+void	test_part2(void)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = (char *)ft_memalloc(5);
+	while (i < 5)
+	{
+		if (str[i] != '\0')
+			break ;
+		i++;
+	}
+	if (i == 5)
+		printf("ft_memalloc OK\t\n");
+	else
+	{
+		printf("ft_memalloc FAIL, aborting rest part2 tests\t\n");
+		return ;
+	}
+	ft_memdel((void **)&str);
+	if (str == NULL)
+		printf("ft_memdel OK\t\n");
+	else
+	{
+		printf("ft_memdel FAIL, aborting rest part2 tests\t\n");
+		return ;
+	}
+	str = ft_strnew(4);
+	i = 0;
+	if (str)
+	{
+		while (i < 5)
+		{
+			if (str[i] != '\0')
+				break ;
+			i++;
+		}
+		if (i == 5)
+			printf("ft_strnew OK\t\n");
+		else
+		{
+			printf("ft_strnew FAIL, aborting rest part2 tests\t\n");
+			return ;
+		}
+	}
+	ft_strdel(&str);
+	if (str == NULL)
+		printf("ft_strdel OK\t\n");
+	else
+	{
+		printf("ft_strdel FAIL, aborting rest part2 tests\t\n");
+		return ;
+	}
+	str = ft_strnew(4);
+	if (!str)
+		return ;
+	str = strcpy(str, "toto");
+	if (strcmp(str, "toto") == 0)
+	{
+		ft_striter(str, &ft_toupper2);
+		if (strcmp(str, "TOTO") == 0)
+			printf("ft_striter OK\t\n");
+		else
+			printf("ft_striter FAIL\t\n");
+		ft_strclr(str);
+		i = 0;
+		while (i < 5)
+		{
+			if (str[i] != '\0')
+				break ;
+			i++;
+		}
+		if (i == 5)
+			printf("ft_strclr OK\t\n");
+		else
+			printf("ft_strclr FAIL\t\n");
+	}
+	else
+		printf("ft_strclr FAIL\t\n");
+	str = strcpy(str, "toto");
+	ft_striteri(str, &ft_iteritest);
+	if (strcmp(str, "tpvr") == 0)
+		printf("ft_striteri OK\t\n");
+	else
+		printf("ft_striteri FAIL\t\n");	
+	str = strcpy(str, "toto");
+	char *str2;
+	str2 = ft_strmap(str, &ft_mapitertest);
+	if (strcmp(str, "toto") == 0 &&
+		strcmp(str2, "TOTO") == 0)
+		printf("ft_strmap OK\t\n");
+	else
+		printf("ft_strmap FAIL\t\n");
+	str = strcpy(str, "toto");
+	str2 = ft_strmapi(str, &ft_mapiteritest);
+	if (strcmp(str, "toto") == 0 &&
+		strcmp(str2, "tpvr") == 0)
+		printf("ft_strmapi OK\t\n");
+	else
+		printf("ft_strmapi FAIL\t\n");
+	if (ft_strequ("toto", "toto") == 1 &&
+		ft_strequ("doggoabba", "doggo") == 0)
+		printf("ft_strequ OK\t\n");
+	else
+		printf("ft_strequ FAIL\t\n");
+	if (ft_strnequ("doggo", "dog", 3) == 1 &&
+		ft_strnequ("abcdf", "abc", 5) == 0 &&
+		ft_strnequ("toto", "toto", 10) == 1)
+		printf("ft_strnequ OK\t\n");
+	else
+		printf("ft_strnequ FAIL\t\n");
+	free(str);
+	str = ft_strsub("abcdefghij", 3, 5);
+	if (!str)
+	{
+		printf("ft_strsub FAIL\t\n");
+		return ;
+	}
+	if (strcmp(str, "defgh") == 0)
+		printf("ft_strsub OK\t\n");
+	else
+		printf("ft_strsub FAIL\t\n");
+	free(str);
+	str = ft_strjoin("toto", "africa");
+	if (!str)
+	{
+		printf("ft_strjoin FAIL\t\n");
+		return ;
+	}
+	if (strcmp(str, "totoafrica") == 0)
+		printf("ft_strjoin OK\t\n");
+	else
+		printf("ft_strjoin FAIL\t\n");
+	free(str);
+	free(str2);
+	str = ft_strnew(50);
+	if (!str)
+		return ;
+	str = strcpy(str, "    \ttoto\t   \t");
+	str2 = ft_strtrim(str);
+	if (!str2)
+	{
+		printf("ft_strtrim FAIL\t\n");
+		return ;
+	}
+	if (strcmp(str2, "toto") == 0 &&
+		strcmp(str, "    \ttoto\t   \t") == 0)
+		printf("ft_strtrim OK\t\n");
+	else
+		printf("ft_strtrim FAIL\t\n");
+	free(str2);
+	free(str);
+	char **tab;
+	tab = ft_strsplit("*hello*fellow***students*");
+	if (!tab)
+	{
+		printf("ft_strsplit FAIL\t\n");
+		return ;
+	}
+	if (strcmp(tab[0], "hello") == 0 &&
+		strcmp(tab[1], "fellow") == 0 &&
+		strcmp(tab[2], "students") == 0 &&
+		tab[3] == 0)
+		printf("ft_strsplit OK\t\n");
+	else
+		printf("ft_strsplit FAIL\t\n");
+	str = ft_itoa(682001);
+	str2 = ft_itoa(-2147483648);
+	if (!str || !str2)
+	{
+		printf("ft_itoa FAIL\t\n");
+		return ;
+	}
+	if (strcmp(str, "682001") == 0 &&
+		strcmp(str2, "-2147483648") == 0)
+		printf("ft_itoa OK\t\n");
+	else
+		printf("ft_itoa FAIL\t\n");
+
+
+
+}
+
+
 
 void	test_lst(void)
 {
@@ -152,7 +355,7 @@ void	test_bonuslst(void)
 		printf("ft_lstapp OK\t\n");
 	else
 		printf("ft_lstapp FAIL\t\n");
-	str = ft_lstfold(lst, &ft_strjoin);
+	str = ft_lstfold(lst, &ft_lstjoin);
 	if (strcmp("doggotatatatotoro", str) == 0)
 		printf("ft_lstfold OK\t\n");
 	else
@@ -486,8 +689,8 @@ void	test_strncpy(void)
 {
 	char	*str;
 	char	*str2;
-	str = _strdup("This string");
-	str2 = _strdup("This string");
+	str = strdup("This string");
+	str2 = strdup("This string");
 	str = strncpy(str, "toto", 8);
 	str2 = ft_strncpy(str2, "toto", 8);
 	if (strcmp(str, str2) == 0)
@@ -504,8 +707,8 @@ void	test_strcpy(void)
 {
 	char	*str;
 	char	*str2;
-	str = _strdup("This string");
-	str2 = _strdup("This string");
+	str = strdup("This string");
+	str2 = strdup("This string");
 	str = strcpy(str, "toto");
 	str2 = ft_strcpy(str2, "toto");
 	if (strcmp(str, str2) == 0)
@@ -522,7 +725,7 @@ void	test_strdup(void)
 {
 	char	*str;
 	char	*str2;
-	str = _strdup("This string");
+	str = strdup("This string");
 	str2 = ft_strdup("This string");
 	str = strncpy(str, "toto", 4);
 	str2 = strncpy(str2, "toto", 4);
@@ -627,7 +830,7 @@ void	test_memccpy(void)
 	memset(dest2, '\0', 50);
 	dest = strcpy(dest, "byebyebyebyebyebyebyebye");
 	dest2 = strcpy(dest2, "byebyebyebyebyebyebyebye");
-	dptr = (char *)_memccpy(dest, src, 'e', 11);
+	dptr = (char *)memccpy(dest, src, 'e', 11);
 	dptr2 = (char *)ft_memccpy(dest2, src2, 'e', 11);
 	if (strcmp(dest, dest2) == 0)
 	{
@@ -668,8 +871,8 @@ void	test_bzero(void)
 {
 	char	*str;
 	char	*str2;
-	str = _strdup("This string");
-	str2 = _strdup("This string");
+	str = strdup("This string");
+	str2 = strdup("This string");
 	ft_bzero(str, 5);
 	ft_bzero(str2, 5);
 	if (memcmp(str, str2, 11) == 0)
@@ -686,8 +889,8 @@ void	test_memset(void)
 {
 	char	*str;
 	char	*str2;
-	str = _strdup("This string");
-	str2 = _strdup("This string");
+	str = strdup("This string");
+	str2 = strdup("This string");
 	str = (char *)memset(str, '$', 5);
 	str2 = ft_memset(str2, '$', 5);
 	if (strcmp(str, str2) == 0)
@@ -725,36 +928,17 @@ int		main(void)
 	test_strncmp();
 	test_atoi();
 	test_isalpha();
+	test_isalnum();
 	test_isdigit();
 	test_isascii();
 	test_isprint();
 	test_toupper();
 	test_tolower();
 
+	test_part2();
 	test_lst();
 	test_bonuslst();
 
-	/*
-	char	*dest;
-	dest = (char *)malloc(sizeof(*dest) * 15);
-	memset(dest, 0, 15);
-	memset(dest, 's', 13);
 
-	write(1, dest, 15);
-	dest = ft_strncpy(dest, "lorem", 8);
-	write(1, dest, 15);
-	
-
-	char **tab;
-
-	tab = ft_strsplit("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
-
-	while (*tab)
-	{
-		printf("%s\n", *tab);
-		tab++;
-	}
-*/
-	system("pause");
 	return (0);
 }

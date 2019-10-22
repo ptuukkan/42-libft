@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strtoupper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:51:28 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/17 11:51:29 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/22 15:15:32 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/22 15:17:15 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 void	ft_strtoupper(char *str)
-{	
+{
 	int	i;
-	i = 0;
 
+	i = 0;
 	while (str[i] != '\0')
 	{
 		str[i] = ft_toupper(str[i]);
