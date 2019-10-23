@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:51:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/23 11:55:07 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:27:32 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strtrim(char const *s)
 	while ((end >= 1) && (s[end] == ' ' || s[end] == '\n' || s[end] == '\t'))
 		end--;
 	if (end < start)
-		return (NULL);
+		return (ft_strnew(0));
 	trimstr = ft_strsub(s, start, end - start + 1);
 	if (trimstr == NULL)
 		return (NULL);
