@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:21:48 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 16:09:13 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/23 11:51:26 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ static int	ft_wordcount(char const *s, char c)
 	int	n;
 
 	i = 0;
-	n = 1;
+	n = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == c && (s[i + 1] != c && s[i + 1] != '\0'))
 			n++;
 		i++;
 	}
+	if (n > 0)
+		n++;
 	return (n);
 }
 

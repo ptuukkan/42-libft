@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:52:25 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 15:21:11 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:04:13 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void				ft_strcapitalize(char *str);
 void				*ft_lstfold(t_list *lst,
 						void *(*f)(const void *, const void *));
 void				*ft_lstpop(t_list **alst);
+size_t				ft_lstsize(t_list *lst);
 
 #endif

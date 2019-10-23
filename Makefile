@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/10/22 14:06:26 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/10/23 12:04:42 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 		ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c \
 		ft_lstadd.c ft_lstapp.c ft_lstcapitalize.c ft_lstdel.c \
 		ft_lstdelone.c ft_lstfold.c ft_lstiter.c ft_lstjoin.c \
-		ft_lstlen.c ft_lstmap.c ft_lstnew.c ft_lstpop.c ft_lstprint.c \
+		ft_lstsize.c ft_lstmap.c ft_lstnew.c ft_lstpop.c ft_lstprint.c \
 		ft_lsttolower.c ft_lsttoupper.c ft_memalloc.c \
 		ft_memccpy.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
 		ft_memdel.c ft_memmove.c ft_memset.c ft_putchar.c \
