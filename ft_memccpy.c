@@ -6,20 +6,20 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 14:41:06 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 15:04:21 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:39:12 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
 	char	*s;
 	char	*d;
 	int		i;
 
 	s = (char *)src;
-	d = (char *)dest;
+	d = (char *)dst;
 	i = 0;
 	while (n > 0 && s[i] != (char)c)
 	{

@@ -6,23 +6,23 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:46:05 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 15:07:34 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:50:11 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dest, const char *src)
+char	*ft_strcat(char *s1, const char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (dest[i] != '\0')
+	while (s1[i] != '\0')
 		i++;
-	while (*src != '\0')
+	while (*s2 != '\0')
 	{
-		dest[i] = *src;
+		s1[i] = *s2;
 		i++;
-		src++;
+		s2++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	s1[i] = '\0';
+	return (s1);
 }
