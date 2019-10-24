@@ -6,11 +6,13 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/10/23 12:04:42 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/10/24 17:26:18 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+SRCDIR = srcs
 
 SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 		ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c \
@@ -29,23 +31,25 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 		ft_strnstr.c ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c \
 		ft_strtolower.c ft_strtoupper.c ft_strtrim.c ft_tolower.c ft_toupper.c \
 
-OBJECTS = ${SRCS:.c=.o}
+OBJDIR = objects
 
-INC = ./
+OBJS = ${SRCS:.c=.o}
+
+INC = includes/
 
 GCC = gcc -Werror -Wextra -Wall -g
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	ar rc $(NAME) $(OBJECTS)
+$(NAME): $(OBJS)
+	ar rc $(NAME) $(OBJDIR)/$(OBJS)
 	ranlib $(NAME)
 
-$(OBJECTS): %.o: %.c
-	$(GCC) -c $< -o $@ -I $(INC)
+$(OBJS): %.o: $(SRCDIR)/%.c
+	$(GCC) -c $< -o $(OBJDIR)/$@ -I $(INC)
 
 clean:
-		/bin/rm -f $(OBJECTS)
+		/bin/rm -f $(OBJDIR)/$(OBJS)
 
 fclean : clean
 		/bin/rm -f $(NAME)

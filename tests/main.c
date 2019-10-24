@@ -6,13 +6,66 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/23 12:08:42 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:40:55 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 #include <stdio.h>
 #include <ctype.h>
+
+void	ft_toupper2(char *c)
+{
+	if (*c >= 97 && *c <= 122)
+		*c = *c - 32;
+}
+
+void	ft_strtoupper2(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_toupper2(str[i]);
+		i++;
+	}
+}
+
+void	ft_lsttoupper2(t_list *elem)
+{
+	ft_strtoupper2((char *)elem->content);
+}
+
+void	ft_strcapitalize2(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_toupper2(str[i]);
+		i++;
+		while (str[i] != '\0' && ft_isalnum(str[i]) == 1)
+		{
+			str[i] = ft_tolower(str[i]);
+			i++;
+		}
+		while (str[i] != '\0' && ft_isalnum(str[i]) == 0)
+			i++;
+	}
+}
+
+t_list	*ft_lstcapitalize2(t_list *elem)
+{
+	t_list	*lst;
+
+	lst = ft_lstnew(elem->content, elem->content_size);
+	if (lst == NULL)
+		return (NULL);
+	ft_strcapitalize2((char *)lst->content);
+	return (lst);
+}
 
 void	printarray(int *arr, int n)
 {
@@ -41,12 +94,6 @@ char	ft_mapitertest(char c)
 char	ft_mapiteritest(unsigned int i, char c)
 {
 	return (c + i);
-}
-
-void	ft_toupper2(char *c)
-{
-	if (*c >= 97 && *c <= 122)
-		*c = *c - 32;
 }
 
 void	lst_free(void *content, size_t content_size)
@@ -157,7 +204,7 @@ void	test_part2(void)
 	if (strcmp(str, "tpvr") == 0)
 		printf("ft_striteri OK\t\n");
 	else
-		printf("ft_striteri FAIL\t\n");	
+		printf("ft_striteri FAIL\t\n");
 	str = strcpy(str, "toto");
 	char *str2;
 	str2 = ft_strmap(str, &ft_mapitertest);
@@ -311,7 +358,7 @@ void	test_lst(void)
 	ft_lstadd(&lst, ft_lstnew("tatata", 7));
 	ft_lstadd(&lst, ft_lstnew("doggo", 6));
 	ft_lstadd(&lst, ft_lstnew("totoro", 7));
-	ft_lstiter(lst, &ft_lsttoupper);
+	ft_lstiter(lst, &ft_lsttoupper2);
 	if (strcmp("TOTORO", lst->content) == 0 &&
 		strcmp("DOGGO", lst->next->content) == 0 &&
 		strcmp("TATATA", lst->next->next->content) == 0 &&
@@ -319,13 +366,13 @@ void	test_lst(void)
 		printf("ft_lstiter OK\t\n");
 	else
 		printf("ft_lstiter FAIL\t\n");
-	temp = ft_lstmap(lst, &ft_lstcapitalize);
+	temp = ft_lstmap(lst, &ft_lstcapitalize2);
 	if (strcmp("TOTORO", lst->content) == 0 &&
 		strcmp("Totoro", temp->content) == 0 &&
 		strcmp("Doggo", temp->next->content) == 0 &&
 		strcmp("Tatata", temp->next->next->content) == 0 &&
 		strcmp("Toto", temp->next->next->next->content) == 0)
-		
+
 	{
 		printf("ft_lstmap OK\t\n");
 		ft_lstdel2(&temp, &lst_free);
@@ -433,7 +480,7 @@ void	test_isascii(void)
 	int	i;
 	int	ret;
 	int	ret2;
-	
+
 	i = 0;
 	ret = 0;
 	ret2 = 0;
@@ -784,7 +831,9 @@ void	test_memcmp(void)
 	if (result == 4)
 		printf("ft_memcmp OK\t\n");
 	else
+	{
 		printf("ft_memcmp FAIL\t\n");
+	}
 }
 
 void	test_memchr(void)
@@ -829,7 +878,7 @@ void	test_memccpy(void)
 	char		*dest2;
 	char		*dptr;
 	char		*dptr2;
-	
+
 	dest = (char *)malloc(sizeof(char) * 50);
 	dest2 = (char *)malloc(sizeof(char) * 50);
 	memset(dest, '\0', 50);
@@ -868,7 +917,7 @@ void	test_memcpy(void)
 	{
 		printf("ft_memcpy FAIL\t\n");
 	}
-	
+
 
 
 }
@@ -911,7 +960,7 @@ void	test_memset(void)
 
 int		main(void)
 {
-	
+
 	test_memset();
 	test_bzero();
 	test_memcpy();
