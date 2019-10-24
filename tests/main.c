@@ -6,11 +6,11 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 16:40:55 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:21:01 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../includes/libft.h"
 #include <stdio.h>
 #include <ctype.h>
 
@@ -27,7 +27,7 @@ void	ft_strtoupper2(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		ft_toupper2(str[i]);
+		ft_toupper2(&str[i]);
 		i++;
 	}
 }
@@ -44,7 +44,7 @@ void	ft_strcapitalize2(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		ft_toupper2(str[i]);
+		ft_toupper2(&str[i]);
 		i++;
 		while (str[i] != '\0' && ft_isalnum(str[i]) == 1)
 		{

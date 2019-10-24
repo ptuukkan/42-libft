@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/10/24 17:26:18 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/10/24 18:44:56 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 
 OBJDIR = objects
 
-OBJS = ${SRCS:.c=.o}
+OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
 INC = includes/
 
@@ -42,16 +42,20 @@ GCC = gcc -Werror -Wextra -Wall -g
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJDIR)/$(OBJS)
+	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
-$(OBJS): %.o: $(SRCDIR)/%.c
-	$(GCC) -c $< -o $(OBJDIR)/$@ -I $(INC)
+$(OBJS): $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INC)/libft.h
+	@[ -d $(@D) ] || mkdir -p $(@D)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 clean:
-		/bin/rm -f $(OBJDIR)/$(OBJS)
+		/bin/rm -f $(OBJS)
+		/bin/rm -rf $(OBJDIR)
 
 fclean : clean
 		/bin/rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: clean fclean all
