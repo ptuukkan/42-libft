@@ -21,7 +21,7 @@ void	*ft_lstfold(t_list **alst, void *(*f)(const void *, const void *))
 	lst = *alst;
 	if (lst == NULL)
 		return (NULL);
-	if (!(result = ft_memdup(lst->content, lst->content)))
+	if (!(result = ft_memdup(lst->content, lst->content_size)))
 		return (NULL);
 	lst = lst->next;
 	while (lst != NULL)
