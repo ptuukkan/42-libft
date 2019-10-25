@@ -31,6 +31,7 @@ void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
+void				*ft_memdup(const void *src, size_t n);
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
 char				*ft_strcpy(char *dst, const char *src);
@@ -91,9 +92,10 @@ void				ft_lsttolower(t_list *elem);
 void				ft_lstprint(t_list *elem);
 t_list				*ft_lstcapitalize(t_list *elem);
 void				ft_strcapitalize(char *str);
-void				*ft_lstfold(t_list *lst,
+void				*ft_lstfold(t_list **alst,
 						void *(*f)(const void *, const void *));
 void				*ft_lstpop(t_list **alst);
 size_t				ft_lstsize(t_list *lst);
+void				ft_lstfree(void *content, size_t content_size);
 
 #endif

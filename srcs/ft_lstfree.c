@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:13 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 14:07:51 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 11:47:15 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/23 12:43:17 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_lstjoin(const void *s1, const void *s2)
+void	ft_lstfree(void *content, size_t content_size)
 {
-	void	*joinstr;
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	joinstr = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
-	if (joinstr == NULL)
-		return (NULL);
-	joinstr = ft_strcat(joinstr, s1);
-	joinstr = ft_strcat(joinstr, s2);
-	return (joinstr);
+	(void)content_size;
+	free(content);
 }
