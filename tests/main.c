@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:21:01 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/29 10:26:44 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -408,11 +408,15 @@ void	test_bonuslst(void)
 		printf("ft_lstsize OK\t\n");
 	else
 		printf("ft_lstsize FAIL\t\n");
-	str = ft_lstfold(lst, &ft_lstjoin);
+	str = ft_lstfold(&lst, &ft_lstjoin);
 	if (strcmp("doggotatatatotoro", str) == 0)
 		printf("ft_lstfold OK\t\nft_lstjoin OK\t\n");
 	else
 		printf("ft_lstfold FAIL\t\nft_lstjoin FAIL\t\n");
+	lst = NULL;
+	ft_lstadd(&lst, ft_lstnew("tatata", 7));
+	ft_lstadd(&lst, ft_lstnew("doggo", 6));
+	ft_lstapp(&lst, ft_lstnew("totoro", 7));
 	data = ft_lstpop(&lst);
 	if (strcmp("doggo", data) == 0 &&
 		strcmp("tatata", lst->content) == 0)
@@ -619,9 +623,9 @@ void	test_strnstr(void)
 
 void	test_strstr(void)
 {
-	const char haystack[20] = "TutorialsPoint";
-	const char needle[10] = "Point";
-	char *ret;
+	const char *haystack = "MZIRIBMZIRIBMZP";
+	const char *needle = "MZIRIBMZP";
+	char	*ret;
 	char	*ret2;
 
 	ret = strstr(haystack, needle);
