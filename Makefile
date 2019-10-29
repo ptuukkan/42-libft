@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/10/24 18:44:56 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/10/29 09:50:59 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ SRCDIR = srcs
 SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 		ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c \
 		ft_lstadd.c ft_lstapp.c ft_lstcapitalize.c ft_lstdel.c \
-		ft_lstdelone.c ft_lstfold.c ft_lstiter.c ft_lstjoin.c \
+		ft_lstdelone.c ft_lstfold.c ft_lstfree.c ft_lstiter.c ft_lstjoin.c \
 		ft_lstsize.c ft_lstmap.c ft_lstnew.c ft_lstpop.c ft_lstprint.c \
 		ft_lsttolower.c ft_lsttoupper.c ft_memalloc.c \
 		ft_memccpy.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
-		ft_memdel.c ft_memmove.c ft_memset.c ft_putchar.c \
+		ft_memdel.c ft_memdup.c ft_memmove.c ft_memset.c ft_putchar.c \
 		ft_putchar_fd.c ft_putendl.c ft_putendl_fd.c ft_putnbr.c \
 		ft_putnbr_fd.c ft_putstr.c ft_putstr_fd.c ft_strcapitalize.c \
 		ft_strcat.c ft_strchr.c ft_strclr.c ft_strcmp.c ft_strcpy.c \
