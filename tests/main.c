@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:54:08 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/29 10:26:44 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/10/31 12:24:54 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -561,9 +561,13 @@ void	test_isalpha(void)
 void	test_atoi(void)
 {
 	if (atoi("  -8401") == ft_atoi("  -8401"))
-		printf("ft_atoi OK\t\n");
+		printf("ft_atoi test1 OK, ");
 	else
-		printf("ft_atoi FAIL\t\n");
+		printf("ft_atoi test1 FAIL, ");
+	if (atoi("12612473") == ft_atoi("12612473"))
+		printf("test2 OK\n");
+	else
+		printf("test2 FAIL\n");
 }
 
 void	test_strncmp(void)
@@ -610,12 +614,12 @@ void	test_strcmp(void)
 
 void	test_strnstr(void)
 {
-	const char *largestring = "Foo Bar Baz";
-	const char *smallstring = "Bar";
+	const char *largestring = "ozarabozaraboze123";
+	const char *smallstring = "ozaraboze";
 	char	*ptr;
 
-	ptr = ft_strnstr(largestring, smallstring, 4);
-	if (ptr == NULL)
+	ptr = ft_strnstr(largestring, smallstring, 15);
+	if (ptr != NULL && strcmp(ptr, "ozaraboze123") == 0)
 		printf("ft_strnstr OK\t\n");
 	else
 		printf("ft_strnstr FAIL\t\n");
