@@ -14,16 +14,23 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 {
+	size_t	s2len;
+	int		i;
+
+	i = 0;
 	if ((s2 == NULL || *s2 == '\0') || (*s2 == '\0' && *s1 == '\0'))
 		return ((char *)s1);
-	while (*s1 && len)
+	s2len = ft_strlen(s2);
+	while (s1[i] && len)
 	{
-		if (*s1 == *s2)
+		if (s1[i] == *s2)
 		{
-			if (ft_strncmp(s1, s2, len) == 0)
-				return ((char *)s1);
+			if (len < s2len)
+				return (NULL);
+			if (ft_strncmp(&s1[i], s2, ft_strlen(s2)) == 0)
+				return ((char *)&s1[i]);
 		}
-		s1++;
+		i++;
 		len--;
 	}
 	return (NULL);

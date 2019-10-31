@@ -614,15 +614,45 @@ void	test_strcmp(void)
 
 void	test_strnstr(void)
 {
+	char	*ptr;
+	char	buf[10];
+
+	bzero(buf, 10);
+	strcpy(buf, "un deux 9");
+	ptr = ft_strnstr(buf, "deux", 10);
+	if (ptr && strcmp(ptr, "deux 9") == 0)
+		printf("ft_strnstr test1 OK, ");
+	else
+		printf("ft_strnstr test1 FAIL, ");
+	ptr = ft_strnstr(buf, "", 6);
+	if (ptr && strcmp(ptr, buf) == 0)
+		printf("test2 OK, ");
+	else
+		printf("test2 FAIL, ");
+	ptr = ft_strnstr(buf, "9", 10);
+	if (ptr && strcmp(ptr, "9") == 0)
+		printf("test3 OK, ");
+	else
+		printf("test3 FAIL, ");
+	ptr = ft_strnstr(buf, "9", 8);
+	if (ptr == NULL)
+		printf("test4 OK, ");
+	else
+		printf("test4 FAIL, ");
+	ptr = ft_strnstr(buf, "deux", 5);
+	if (ptr == NULL)
+		printf("test5 OK, ");
+	else
+		printf("test5 FAIL, ");
+
 	const char *largestring = "ozarabozaraboze123";
 	const char *smallstring = "ozaraboze";
-	char	*ptr;
 
 	ptr = ft_strnstr(largestring, smallstring, 15);
 	if (ptr != NULL && strcmp(ptr, "ozaraboze123") == 0)
-		printf("ft_strnstr OK\t\n");
+		printf("test6 OK\n");
 	else
-		printf("ft_strnstr FAIL\t\n");
+		printf("test6 FAIL\n");
 }
 
 void	test_strstr(void)
