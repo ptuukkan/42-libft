@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/11/06 09:36:48 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/12/19 12:40:28 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 		ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c \
 		ft_strnstr.c ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c \
 		ft_strtolower.c ft_strtoupper.c ft_strtrim.c ft_tolower.c ft_toupper.c \
-		get_next_line.c
+		get_next_line.c ft_exiterror.c
 
 OBJDIR = objects
 
@@ -38,7 +38,7 @@ OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
 INC = includes/
 
-GCC = gcc -Werror -Wextra -Wall -g
+GCC = gcc -Werror -Wextra -Wall
 
 all: $(NAME)
 

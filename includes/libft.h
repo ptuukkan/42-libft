@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:52:25 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/11/06 09:36:10 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/12/19 12:39:43 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ size_t				ft_lstsize(t_list *lst);
 void				ft_lstfree(void *content, size_t content_size);
 t_list				*ft_lstchr(t_list *lst, int c);
 int					get_next_line(const int fd, char **line);
+void				ft_exiterror(char *err_msg, int exitcode, int fd);
 
 #endif
