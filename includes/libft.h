@@ -16,6 +16,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
+# include <stdarg.h>
 
 # define BUFF_SIZE 4096
 # define MAX_FD 4864
@@ -103,5 +105,12 @@ void				ft_lstfree(void *content, size_t content_size);
 t_list				*ft_lstchr(t_list *lst, int c);
 int					get_next_line(const int fd, char **line);
 void				ft_exiterror(char *err_msg, int exitcode, int fd);
+char				*ft_dtoa(double dbl, int prec);
+char				*ft_ltoa(int64_t n);
+int					ft_max(int a, int b);
+int					ft_min(int a, int b);
+int					ft_putnchar(char c, int count);
+char				*ft_strnjoin(int n, ...);
+char				*ft_ultoa_base(uint64_t n, int base, int upper);
 
 #endif
