@@ -12,31 +12,7 @@
 
 #include "libft.h"
 
-static int	d_special_cases(double dbl, char **nb)
-{
-	uint64_t	u;
-
-	u = *(uint64_t *)&dbl;
-	if (u == 0 || u > (uint64_t)9223372036854775807)
-	{
-		*nb = ft_strdup("0.0");
-		return (1);
-	}
-	else if (u == (uint64_t)9218868437227405312)  // || u > (t_u64)18442240474082181119)
-	{
-		*nb = ft_strdup("inf");
-		return (1);
-	}
-	else if (u == (uint64_t)9218868437227405313 || u == (uint64_t)9221120237041090561 ||
-			u == (uint64_t)9223372036854775807)
-	{
-		*nb = ft_strdup("nan");
-		return (1);
-	}
-	return (0);
-}
-
-static char	*ft_dtoa_fraction(double dbl, int prec)
+static char	*ft_dtoa_fraction(long double dbl, int prec)
 {
 	char				*nb;
 	int					i;
@@ -50,35 +26,52 @@ static char	*ft_dtoa_fraction(double dbl, int prec)
 	{
 		dbl *= 10;
 		nb[i++] = 48 + (int)(dbl);
-		dbl = dbl - (int)(dbl);
+		dbl -= (int)dbl;
 	}
 	return (nb);
 }
 
-char		*ft_dtoa(double dbl, int prec)
+static char	*ft_dtoa_zeroprec(long double dbl, int altform)
+{
+	uint64_t	u;
+	char		*nb;
+	char		*tmp;
+
+	u = (uint64_t)dbl + 0.5;
+	if (altform)
+	{
+		tmp = ft_ultoa_base(u, 10, 0);
+		if (!(nb = ft_strjoin(tmp, ".")))
+			return (NULL);
+		ft_strdel(&tmp);
+		return (nb);
+	}
+	else
+		return (ft_ultoa_base(u, 10, 0));
+}
+
+char		*ft_dtoa(long double dbl, int prec, int altform)
 {
 	uint64_t	u;
 	char		*nb;
 	char		*fraction;
 	char		*result;
 
-	if (d_special_cases(dbl, &nb))
-		return (nb);
+	dbl = dbl + (0.5 / ft_pow(10, 10, prec));
 	if (prec == 0)
-	{
-		u = (uint64_t)dbl + 0.5;
-		return (ft_ultoa_base(u, 10, 0));
-	}
+		return (ft_dtoa_zeroprec(dbl, altform));
 	else
+	{
 		u = (uint64_t)dbl;
-	if (!(nb = ft_ultoa_base(u, 10, 0)))
-		return (NULL);
-	dbl = dbl - u;
-	if (!(fraction = ft_dtoa_fraction(dbl, prec)))
-		return (NULL);
-	if (!(result = ft_strnjoin(3 , nb, ".", fraction)))
-		return (NULL);
-	ft_strdel(&fraction);
+		if (!(nb = ft_ultoa_base(u, 10, 0)))
+			return (NULL);
+		dbl = dbl - u;
+		if (!(fraction = ft_dtoa_fraction(dbl, prec)))
+			return (NULL);
+		if (!(result = ft_strnjoin(3, nb, ".", fraction)))
+			return (NULL);
+		ft_strdel(&fraction);
+	}
 	ft_strdel(&nb);
 	return (result);
 }

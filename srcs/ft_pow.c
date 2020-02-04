@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ltoa.c                                          :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,37 +12,17 @@
 
 #include "libft.h"
 
-static size_t	ft_nbrlen(int64_t nb)
+uint64_t	ft_pow(int nb, int power, int count)
 {
-	size_t	len;
+	uint64_t	n;
 
-	len = 1;
-	while (nb /= 10)
-		len++;
-	return (len);
-}
-
-char			*ft_ltoa(int64_t n)
-{
-	char		*result;
-	size_t		i;
-	int			sign;
-
-	if (n < -9223372036854775807)
-		return (ft_strdup("-9223372036854775808"));
-	i = ft_nbrlen(n);
-	sign = (n < 0);
-	if (!(result = ft_strnew(sizeof(char) * i + sign)))
-		return (NULL);
-	if (sign)
+	if (count == 0)
+		return (1);
+	n = (uint64_t)nb;
+	while (count > 1)
 	{
-		n = -n;
-		result[0] = '-';
+		n *= power;
+		count--;
 	}
-	while (i-- > 0)
-	{
-		result[i + sign] = (n % 10) + 48;
-		n /= 10;
-	}
-	return (result);
+	return (n);
 }
