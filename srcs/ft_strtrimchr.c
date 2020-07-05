@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strtrimchr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 11:51:08 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/23 12:24:40 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strtrimchr(char const *s, char c, char mode)
 {
-	size_t	len;
+	int		start;
+	int		end;
 
 	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*s != '\0')
+		return (NULL);
+	start = 0;
+	end = (int)ft_strlen(s) - 1;
+	if (mode == 1 || mode == 3)
 	{
-		len++;
-		s++;
+		while (s[end] == c)
+			end--;
 	}
-	return (len);
+	if (mode == 2 || mode == 3)
+	{
+		while (s[start] == c)
+			start++;
+	}
+	if (start > end)
+		return (ft_strnew(0));
+	end = end + 1 - start;
+	return (ft_strsub(s, start, end));
 }

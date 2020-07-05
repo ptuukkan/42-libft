@@ -26,6 +26,8 @@ char	*ft_strnjoin(int n, ...)
 	while (n > 1)
 	{
 		tmp = va_arg(ap, char *);
+		if (tmp == NULL)
+			return (NULL);
 		tmp2 = ft_strjoin(result, tmp);
 		ft_strdel(&result);
 		result = tmp2;

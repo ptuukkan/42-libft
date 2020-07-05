@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_hexincr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 15:04:38 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/22 15:00:51 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	ft_hexincr(char c, int upper)
 {
-	size_t	len;
-
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*s != '\0')
-	{
-		len++;
-		s++;
-	}
-	return (len);
+	if (c >= '0' && c <= '8')
+		return (c + 1);
+	if (c == '9')
+		return (97 - (upper * 32));
+	if (c >= 'a' && c <= 'e')
+		return (c + 1);
+	if (c >= 'A' && c <= 'E')
+		return (c + 1);
+	if (c == 'F' || c == 'f')
+		return ('0');
+	return (c);
 }

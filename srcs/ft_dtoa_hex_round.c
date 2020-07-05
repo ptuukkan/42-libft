@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_dtoa_hex_round.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 15:04:38 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/22 15:00:51 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	round_dbl_hex(char *nb, int i)
 {
-	size_t	len;
-
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*s != '\0')
+	while (i >= 0)
 	{
-		len++;
-		s++;
+		nb[i] = ft_hexincr(nb[i], 0);
+		if (nb[i] != '0')
+			break ;
+		i--;
 	}
-	return (len);
+	if (i < 0)
+		return (1);
+	else
+		return (0);
 }

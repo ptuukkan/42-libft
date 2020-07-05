@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 11:50:42 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/18 14:11:37 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_strrev(char *str)
 {
-	size_t	len;
+	int		i;
+	int		n;
+	char	temp;
 
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*s != '\0')
+	i = 0;
+	n = (int)ft_strlen(str) - 1;
+	while (n > i)
 	{
-		len++;
-		s++;
+		temp = str[n];
+		str[n] = str[i];
+		str[i] = temp;
+		n--;
+		i++;
 	}
-	return (len);
 }

@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strarrdel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 11:47:06 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/17 11:47:08 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_strarrdel(char ***aa)
 {
-	size_t	len;
+	int	i;
 
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*s != '\0')
+	i = 0;
+	if (aa == NULL)
+		return ;
+	while ((*aa)[i] != NULL)
+		i++;
+	while (i > 0)
 	{
-		len++;
-		s++;
+		ft_strdel(&(*aa)[i]);
+		i--;
 	}
-	return (len);
+	if ((*aa)[0] != NULL)
+		ft_strdel(&(*aa)[0]);
+	if (*aa)
+		free(*aa);
 }

@@ -19,8 +19,7 @@ int	ft_putnchar(char c, int count)
 	ret = 0;
 	while (count-- > 0)
 	{
-		write(1, &c, 1);
-		ret++;
+		ret += write(1, &c, 1);
 	}
 	return (ret);
 }
