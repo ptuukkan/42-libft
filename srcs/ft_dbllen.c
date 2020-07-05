@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_dbllen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 15:04:38 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/22 15:00:51 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_dbllen(double dbl)
 {
 	size_t	len;
 
-	if (s == NULL)
-		return (0);
 	len = 0;
-	while (*s != '\0')
+	while (dbl != 0.0)
 	{
+		dbl -= (int)dbl;
+		dbl *= 10;
 		len++;
-		s++;
 	}
 	return (len);
 }

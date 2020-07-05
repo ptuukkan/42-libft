@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-char		*ft_ultoa_base(uint64_t n, int base, int upper)
+char		*ft_ultoa_base(uintmax_t n, int base, int upper)
 {
 	char		*result;
 	int			i;
-	uint64_t	d;
+	uintmax_t	d;
 	char		*radix;
 
 	i = 1;
@@ -34,6 +34,6 @@ char		*ft_ultoa_base(uint64_t n, int base, int upper)
 		result[i] = radix[n % base];
 		n /= base;
 	}
-	free(radix);
+	ft_strdel(&radix);
 	return (result);
 }

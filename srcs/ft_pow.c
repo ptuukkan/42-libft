@@ -12,17 +12,20 @@
 
 #include "libft.h"
 
-uint64_t	ft_pow(int nb, int power, int count)
+long double	ft_pow(long double nb, int power)
 {
-	uint64_t	n;
+	long double	result;
+	int			orig_power;
 
-	if (count == 0)
-		return (1);
-	n = (uint64_t)nb;
-	while (count > 1)
-	{
-		n *= power;
-		count--;
-	}
-	return (n);
+	orig_power = power;
+	result = 1.0;
+	power = ft_abs(power);
+	if (power == 0)
+		return (result);
+	while (power-- > 0)
+		result = result * nb;
+	if (orig_power > 0)
+		return (result);
+	else
+		return (1 / result);
 }

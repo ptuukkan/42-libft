@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_ldtoa_hex_round.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2020/02/27 11:11:10 by ptuukkan          #+#    #+#             */
+/*   Updated: 2020/02/27 11:11:14 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	round_ldbl_hex(char **nb, int i, t_ldbl *ldbl)
 {
-	size_t	len;
+	char	*tmp;
 
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*s != '\0')
+	tmp = NULL;
+	while (i >= 0)
 	{
-		len++;
-		s++;
+		(*nb)[i] = ft_hexincr((*nb)[i], 0);
+		if ((*nb)[i] != '0')
+			break ;
+		i--;
 	}
-	return (len);
+	if (i == -1)
+	{
+		if (!(tmp = ft_strjoin("1", *nb)))
+			return ;
+		tmp[ft_strlen(tmp) - 1] = '\0';
+		ldbl->e += 4;
+		ft_strdel(nb);
+		*nb = tmp;
+	}
+	return ;
 }

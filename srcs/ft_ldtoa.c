@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dtoa.c                                          :+:      :+:    :+:   */
+/*   ft_ldtoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,19 @@
 
 #include "libft.h"
 
-char		*dbl_special_cases(char sign, int e, uint64_t sig)
+char		*ldbl_special_cases(t_ldbl *ldbl)
 {
-	char	*result;
+	char		*result;
+	uint64_t	bits;
 
+	bits = (ldbl->sig & 0x3FFFFFFFFFFFFFFF);
 	result = NULL;
-	if (e == 2047 && sig == 0 && sign == 1)
+	if (ldbl->e == 32767 && ldbl->sign == 1 && ldbl->bit62 == 0 && bits == 0)
 		result = ft_strdup("-inf");
-	else if (e == 2047 && sig == 0 && sign == 0)
+	else if (ldbl->e == 32767 && ldbl->sign == 0 && ldbl->bit62 == 0
+			&& bits == 0)
 		result = ft_strdup("inf");
-	else if (e == 2047 && sig != 0)
+	else if (ldbl->e == 32767 && ldbl->bit62 == 0 && bits != 0)
 		result = ft_strdup("nan");
 	return (result);
 }
@@ -60,34 +63,34 @@ static int	pad_zeroes(char **nb)
 	if (*nb == NULL)
 		return (0);
 	len = ft_strlen(*nb);
-	if (len == 13)
+	if (len == 16)
 		return (1);
-	newlen = 13;
+	newlen = 16;
 	if (!(tmp = ft_strnew(newlen)))
 		return (0);
 	ft_memset(tmp, '0', newlen);
-	ft_strncpy(tmp + (13 - len), *nb, len);
+	ft_strncpy(tmp + (16 - len), *nb, len);
 	ft_strdel(nb);
 	*nb = tmp;
 	return (1);
 }
 
-static char	*mantissa_to_dec(char *nb, uint64_t sig, int e, int i)
+static char	*mantissa_to_dec(char *nb, t_ldbl *ldbl)
 {
 	int		n;
+	int		i;
 	char	*tmp;
 	char	*tmp2;
 	char	*result;
 
-	n = -1;
+	n = 0;
+	i = 0;
 	result = NULL;
-	if (e == 0 && sig == 0)
+	if (ldbl->e == 0 && ldbl->sig == 0)
 		return (nb);
-	if (!(tmp = ft_strdup("1.0")))
-		return (NULL);
-	if (e == 0 && sig != 0)
-		tmp[0] = '0';
 	if (!pad_zeroes(&nb))
+		return (NULL);
+	if (!(tmp = ft_strdup("0.0")))
 		return (NULL);
 	while (nb[i] != '\0')
 	{
@@ -101,25 +104,25 @@ static char	*mantissa_to_dec(char *nb, uint64_t sig, int e, int i)
 	return (result);
 }
 
-char		*ft_dtoa(double dbl, int prec)
+char		*ft_ldtoa(long double dbl, int prec)
 {
-	char		sign;
-	int			e;
-	uint64_t	sig;
-	char		*nb;
-	char		*tmp;
+	t_ldbl	ldbl;
+	char	*nb;
+	char	*tmp;
 
-	parse_double(dbl, &sign, &e, &sig);
-	if ((nb = dbl_special_cases(sign, e, sig)))
+	parse_ldouble(dbl, &ldbl);
+	if (ldbl.sign)
+		dbl = -dbl;
+	if ((nb = ldbl_special_cases(&ldbl)))
 		return (nb);
-	nb = mantissa_to_dec(ft_ultoa_base(sig, 16, 0), sig, e, 0);
-	e -= 1023;
-	if (e > 0)
-		vlq_multiply_2(&nb, e);
+	nb = mantissa_to_dec(ft_ultoa_base(ldbl.sig, 16, 0), &ldbl);
+	ldbl.e -= 16386;
+	if (ldbl.e > 0)
+		vlq_multiply_2(&nb, ldbl.e);
 	else
-		vlq_divide_2(&nb, -e);
+		vlq_divide_2(&nb, -ldbl.e);
 	trim_dblstr(&nb, prec);
-	if (sign)
+	if (ldbl.sign)
 	{
 		tmp = ft_strjoin("-", nb);
 		ft_strdel(&nb);

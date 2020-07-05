@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   vlq_divide_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,31 +12,53 @@
 
 #include "libft.h"
 
-char		*ft_itoa(int n)
+static char	*vlq_divide(char *nb)
 {
 	char	*result;
 	int		i;
-	int		neg;
+	double	d;
+	double	rem;
 
-	if (!(result = ft_strnew(sizeof(char) * 11)))
-		return (NULL);
-	if (n == -2147483648)
-		return (result = ft_strcpy(result, "-2147483648"));
 	i = 0;
-	neg = 0;
-	if (n < 0)
+	rem = 0;
+	result = ft_strnew(ft_strlen(nb) + 1);
+	if (nb == NULL || result == NULL)
+		return (NULL);
+	while (nb[i] != '\0')
 	{
-		neg = 1;
-		n *= -1;
+		if (nb[i] == '.')
+			result[i++] = '.';
+		d = ft_ctoi(nb[i]) / 2.0;
+		result[i] = (int)d + rem + '0';
+		rem = (d - (int)d) * 10;
+		i++;
 	}
-	while (n > 9)
-	{
-		result[i++] = (n % 10) + 48;
-		n /= 10;
-	}
-	result[i++] = (n + 48);
-	if (neg == 1)
-		result[i] = '-';
-	ft_strrev(result);
+	if (rem)
+		result[i] = rem + '0';
 	return (result);
+}
+
+static void	add_decimal_point(char **nb)
+{
+	char	*s;
+
+	s = ft_strjoin(*nb, ".0");
+	ft_strdel(nb);
+	*nb = s;
+}
+
+void		vlq_divide_2(char **nb, int times)
+{
+	char	*tmp;
+
+	tmp = NULL;
+	if (!ft_strchr(*nb, '.'))
+		add_decimal_point(nb);
+	while (times > 0)
+	{
+		tmp = vlq_divide(*nb);
+		ft_strdel(nb);
+		*nb = tmp;
+		times--;
+	}
 }

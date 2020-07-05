@@ -12,17 +12,7 @@
 
 #include "libft.h"
 
-static size_t	ft_nbrlen(int64_t nb)
-{
-	size_t	len;
-
-	len = 1;
-	while (nb /= 10)
-		len++;
-	return (len);
-}
-
-char			*ft_ltoa(int64_t n)
+char			*ft_ltoa(intmax_t n)
 {
 	char		*result;
 	size_t		i;

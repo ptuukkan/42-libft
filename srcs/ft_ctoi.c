@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_ctoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:48:33 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/24 18:39:12 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/17 11:38:15 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/22 14:59:17 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlen(const char *s)
+int	ft_ctoi(char c)
 {
-	size_t	len;
-
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*s != '\0')
-	{
-		len++;
-		s++;
-	}
-	return (len);
+	if (c >= '0' && c <= '9')
+		return (c - 48);
+	if (c >= 'a' && c <= 'f')
+		return (c - 87);
+	if (c >= 'A' && c <= 'F')
+		return (c - 55);
+	return (-1);
 }
