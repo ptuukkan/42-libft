@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <stdarg.h>
+# include "ft_print"
 
 # define BUFF_SIZE 4096
 # define MAX_FD 4864
@@ -145,5 +146,6 @@ char				*ldbl_special_cases(t_ldbl *ldbl);
 char				*dbl_special_cases(char sign, int e, uint64_t sig);
 void				round_ldbl_hex(char **nb, int i, t_ldbl *ldbl);
 int					round_dbl_hex(char *nb, int i);
+int					ft_printf(const char *format, ...);
 
 #endif
