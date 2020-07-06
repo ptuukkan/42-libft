@@ -27,10 +27,11 @@ SRC_CHAR = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_tolower.c ft_toupper.c
 
 SRC_LST = ft_lstadd.c ft_lstapp.c ft_lstcapitalize.c ft_lstchr.c \
-			ft_lstdel.c ft_lstdelone.c ft_lstfold.c ft_lstfree.c \
-			ft_lstiter.c ft_lstjoin.c ft_lstmap.c ft_lstnew.c \
+			ft_lstcount.c ft_lstdel.c ft_lstdelone.c ft_lstfold.c \
+			ft_lstfree.c ft_lstiter.c ft_lstjoin.c ft_lstmap.c ft_lstnew.c \
 			ft_lstpop.c ft_lstprint.c ft_lstsize.c ft_lsttolower.c \
-			ft_lsttoupper.c
+			ft_lsttoupper.c ft_twlstadd.c ft_twlstapp.c ft_twlstconnect.c \
+			ft_twlstcount.c ft_twlstnew.c
 
 SRC_MEM = ft_bzero.c ft_memalloc.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
 			ft_memcpy.c ft_memdel.c ft_memdup.c ft_memmove.c ft_memset.c
@@ -60,8 +61,9 @@ SRC_STR = ft_strarrdel.c ft_strcapitalize.c ft_strcat.c ft_strchr.c \
 			ft_strequ.c ft_striter.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
 			ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c \
 			ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnjoin.c ft_strnstr.c \
-			ft_strrchr.c ft_strrev.c ft_strsplit.c ft_strstr.c ft_strsub.c \
-			ft_strtolower.c ft_strtoupper.c ft_strtrim.c ft_strtrimchr.c \
+			ft_strrchr.c ft_strreplace.c ft_strrev.c ft_strsplit.c \
+			ft_strstr.c ft_strsub.c ft_strtolower.c ft_strtoupper.c \
+			ft_strtrim.c ft_strtrimchr.c
 
 OBJDIR = objects
 
@@ -84,47 +86,47 @@ GCC = gcc -Werror -Wextra -Wall -O3
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
 $(OBJ_CHAR): $(OBJDIR)/%.o: $(SD_CHAR)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_LST): $(OBJDIR)/%.o: $(SD_LST)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_MEM): $(OBJDIR)/%.o: $(SD_MEM)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_MISC): $(OBJDIR)/%.o: $(SD_MISC)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_NUM): $(OBJDIR)/%.o: $(SD_NUM)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_PRINTF): $(OBJDIR)/%.o: $(SD_PRINTF)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_PUT): $(OBJDIR)/%.o: $(SD_PUT)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_STR): $(OBJDIR)/%.o: $(SD_STR)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
-	@$(GCC) -c $< -o $@ -I $(INC)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 clean:
-		@/bin/rm -f $(OBJS)
-		@/bin/rm -rf $(OBJDIR)
+		/bin/rm -f $(OBJS)
+		/bin/rm -rf $(OBJDIR)
 
 fclean : clean
-		@/bin/rm -f $(NAME)
+		/bin/rm -f $(NAME)
 
 re: fclean all
 

@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <stdarg.h>
+# include "ft_printf.h"
 
 # define BUFF_SIZE 4096
 # define MAX_FD 4864
@@ -39,12 +41,12 @@ typedef struct		s_twlist
 
 typedef struct		s_ldbl
 {
-	void			*content;
-	size_t			content_size;
-	int8_t			end;
-	struct s_twlist	*next;
-	struct s_twlist	*prev;
-}					t_twlist;
+	char			sign;
+	uint64_t		sig;
+	int				e;
+	char			bit63;
+	char			bit62;
+}					t_ldbl;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
