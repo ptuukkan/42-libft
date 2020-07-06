@@ -57,7 +57,7 @@ static int	trim_hex(char **nb, int prec)
 	return (0);
 }
 
-static char	*get_exp_str(int e, uint64_t sig)
+static char	*get_exp(int e, uint64_t sig)
 {
 	char	*e_str;
 	char	*tmp;
@@ -107,7 +107,7 @@ char		*ft_dtoa_hex(double dbl, int prec, int upper)
 	if ((nb = dbl_special_cases(sign, e, sig)))
 		return (nb);
 	nb = double_to_hex(ft_ultoa_base(sig, 16, upper), prec,
-		get_exp_str(e, sig), sign);
+		get_exp(e, sig), sign);
 	if (nb == NULL)
 		return (NULL);
 	if ((e == 0 && sig != 0) || dbl == 0.0)

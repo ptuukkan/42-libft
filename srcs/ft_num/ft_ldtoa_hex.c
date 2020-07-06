@@ -57,7 +57,7 @@ static void	trim_hex(char **nb, int prec, t_ldbl *ldbl)
 	}
 }
 
-static char	*get_exp_str(t_ldbl *ldbl)
+static char	*get_exp(t_ldbl *ldbl)
 {
 	char	*e_str;
 	char	*tmp;
@@ -107,7 +107,7 @@ char		*ft_ldtoa_hex(long double dbl, int prec, int upper)
 	if ((nb = ldbl_special_cases(&ldbl)))
 		return (nb);
 	tmp = double_to_hex(ft_ultoa_base(ldbl.sig, 16, upper), prec, &ldbl);
-	exp_str = get_exp_str(&ldbl);
+	exp_str = get_exp(&ldbl);
 	if (!(nb = ft_strjoin(tmp, exp_str)))
 		return (NULL);
 	ft_strdel(&tmp);
