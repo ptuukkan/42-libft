@@ -30,6 +30,15 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_twlist
+{
+	void			*content;
+	size_t			content_size;
+	int8_t			end;
+	struct s_twlist	*next;
+	struct s_twlist	*prev;
+}					t_twlist;
+
 typedef struct		s_ldbl
 {
 	char			sign;
@@ -94,6 +103,8 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 t_list				*ft_lstnew(void const *content, size_t content_size);
+int					ft_lstcount(t_list *lst);
+char				*ft_strreplace(char *search, char *replace, char **subject);
 void				ft_lstdelone(t_list **alst, void(*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void(*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
@@ -147,5 +158,10 @@ char				*dbl_special_cases(char sign, int e, uint64_t sig);
 void				round_ldbl_hex(char **nb, int i, t_ldbl *ldbl);
 int					round_dbl_hex(char *nb, int i);
 int					ft_printf(const char *format, ...);
+t_twlist			*ft_twlstnew(void const *content, size_t content_size);
+void				ft_twlstadd(t_twlist **alst, t_twlist *new);
+void				ft_twlstapp(t_twlist **alst, t_twlist *new);
+int					ft_twlstcount(t_twlist *lst);
+void				ft_twlstconnect(t_twlist *lst);
 
 #endif
