@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:52:25 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/12/19 12:39:43 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/11/06 09:36:10 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
-# include <stdarg.h>
-# include "ft_printf.h"
 
 # define BUFF_SIZE 4096
 # define MAX_FD 4864
@@ -30,14 +28,14 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_ldbl
+typedef struct		s_twlist
 {
-	char			sign;
-	uint64_t		sig;
-	int				e;
-	char			bit63;
-	char			bit62;
-}					t_ldbl;
+	void			*content;
+	size_t			content_size;
+	int8_t			end;
+	struct s_twlist	*next;
+	struct s_twlist	*prev;
+}					t_twlist;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -61,7 +59,6 @@ char				*ft_strnstr(const char *s1, const char *s2, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
-uint64_t			ft_atoul(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -114,38 +111,13 @@ void				*ft_lstpop(t_list **alst);
 size_t				ft_lstsize(t_list *lst);
 void				ft_lstfree(void *content, size_t content_size);
 t_list				*ft_lstchr(t_list *lst, int c);
+int					ft_lstcount(t_list *lst);
 int					get_next_line(const int fd, char **line);
-void				ft_exiterror(char *err_msg, int exitcode, int fd);
-char				*ft_dtoa(double dbl, int prec);
-void				trim_dblstr(char **nb, int prec);
-char				*ft_ldtoa(long double dbl, int prec);
-char				*ft_dtoa_hex(double dbl, int prec, int upper);
-char				*ft_ldtoa_hex(long double dbl, int prec, int upper);
-char				*ft_ltoa(intmax_t n);
-int					ft_max(int a, int b);
-int					ft_min(int a, int b);
-int					ft_putnchar(char c, int count);
-char				*ft_strnjoin(int n, ...);
-char				*ft_ultoa_base(uintmax_t n, int base, int upper);
-long double			ft_pow(long double nb, int power);
-double				ft_ceil(double x);
-int					ft_abs(int a);
-char				*ft_strtrimchr(char const *s, char c, char mode);
-size_t				ft_nbrlen(intmax_t nb);
-int					ft_ctoi(char c);
-char				ft_hexincr(char c, int upper);
-void				ft_strrev(char *str);
-char				*vlq_sum(char *nb1, char *nb2);
-void				vlq_multiply_2(char **nb, int times);
-void				ft_strarrdel(char ***aa);
-void				vlq_divide_2(char **nb, int times);
-void				parse_double(double dbl, char *sign, int *e, uint64_t *sig);
-size_t				ft_dbllen(double dbl);
-void				parse_ldouble(long double dbl, t_ldbl *ldbl);
-char				*ldbl_special_cases(t_ldbl *ldbl);
-char				*dbl_special_cases(char sign, int e, uint64_t sig);
-void				round_ldbl_hex(char **nb, int i, t_ldbl *ldbl);
-int					round_dbl_hex(char *nb, int i);
-int					ft_printf(const char *format, ...);
+char				*ft_strreplace(char *search, char *replace, char **subject);
+t_twlist			*ft_twlstnew(void const *content, size_t content_size);
+void				ft_twlstadd(t_twlist **alst, t_twlist *new);
+void				ft_twlstapp(t_twlist **alst, t_twlist *new);
+int					ft_twlstcount(t_twlist *lst);
+void				ft_twlstconnect(t_twlist *lst);
 
 #endif
