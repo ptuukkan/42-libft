@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:52:25 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/12/19 12:39:43 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2019/11/06 09:36:10 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
-# include <stdarg.h>
-# include "ft_printf.h"
 
 # define BUFF_SIZE 4096
 # define MAX_FD 4864
@@ -41,12 +39,12 @@ typedef struct		s_twlist
 
 typedef struct		s_ldbl
 {
-	char			sign;
-	uint64_t		sig;
-	int				e;
-	char			bit63;
-	char			bit62;
-}					t_ldbl;
+	void			*content;
+	size_t			content_size;
+	int8_t			end;
+	struct s_twlist	*next;
+	struct s_twlist	*prev;
+}					t_twlist;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -70,7 +68,6 @@ char				*ft_strnstr(const char *s1, const char *s2, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
-uint64_t			ft_atoul(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -125,7 +122,9 @@ void				*ft_lstpop(t_list **alst);
 size_t				ft_lstsize(t_list *lst);
 void				ft_lstfree(void *content, size_t content_size);
 t_list				*ft_lstchr(t_list *lst, int c);
+int					ft_lstcount(t_list *lst);
 int					get_next_line(const int fd, char **line);
+char				*ft_strreplace(char *search, char *replace, char **subject);
 void				ft_exiterror(char *err_msg, int exitcode, int fd);
 char				*ft_dtoa(double dbl, int prec);
 void				trim_dblstr(char **nb, int prec);
