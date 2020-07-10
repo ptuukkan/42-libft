@@ -19,6 +19,7 @@
 # include <stdint.h>
 # include <stdarg.h>
 # include "ft_printf.h"
+# include "ft_bst.h"
 
 # define BUFF_SIZE 4096
 # define MAX_FD 4864
@@ -145,6 +146,7 @@ double				ft_ceil(double x);
 int					ft_abs(int a);
 char				*ft_strtrimchr(char const *s, char c, char mode);
 size_t				ft_nbrlen(intmax_t nb);
+int					ft_numcmp(void *n1, void *n2);
 int					ft_ctoi(char c);
 char				ft_hexincr(char c, int upper);
 void				ft_strrev(char *str);

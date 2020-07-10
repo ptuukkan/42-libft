@@ -14,6 +14,7 @@ NAME = libft.a
 
 .SILENT: *.o
 
+SD_BST = srcs/ft_bst
 SD_CHAR = srcs/ft_char
 SD_LST = srcs/ft_lst
 SD_MEM = srcs/ft_mem
@@ -22,6 +23,10 @@ SD_NUM = srcs/ft_num
 SD_PRINTF = srcs/ft_printf
 SD_PUT = srcs/ft_put
 SD_STR = srcs/ft_str
+
+SRC_BST = ft_avltapply_level.c ft_avltbalance.c ft_avltheight.c \
+			ft_avltinsert.c ft_avltnew.c ft_avltprint.c ft_avltrotate_left.c \
+			ft_avltrotate_right.c
 
 SRC_CHAR = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_tolower.c ft_toupper.c
@@ -42,8 +47,8 @@ SRC_NUM = ft_abs.c ft_atoi.c ft_atoll.c ft_atoul.c ft_ceil.c ft_ctoi.c \
 			ft_dbllen.c ft_dtoa_hex_round.c ft_dtoa_hex.c ft_dtoa_round.c \
 			ft_dtoa.c ft_hexincr.c ft_itoa.c ft_ldtoa_hex_round.c \
 			ft_ldtoa_hex.c ft_ldtoa.c ft_ltoa.c ft_max.c ft_min.c ft_nbrlen.c \
-			ft_pow.c ft_ultoa_base.c parse_double.c vlq_divide_2.c \
-			vlq_multiply_2.c vlq_sum.c
+			ft_numcmp.c ft_pow.c ft_ultoa_base.c parse_double.c \
+			vlq_divide_2.c vlq_multiply_2.c vlq_sum.c
 
 SRC_PRINTF = adjust_flags.c adjust_flags2.c convert_a.c convert_b.c \
 				convert_c.c convert_d.c convert_double.c convert_e.c \
@@ -67,6 +72,7 @@ SRC_STR = ft_strarrdel.c ft_strcapitalize.c ft_strcat.c ft_strchr.c \
 
 OBJDIR = objects
 
+OBJ_BST = $(SRC_BST:%.c=$(OBJDIR)/%.o)
 OBJ_CHAR = $(SRC_CHAR:%.c=$(OBJDIR)/%.o)
 OBJ_LST = $(SRC_LST:%.c=$(OBJDIR)/%.o)
 OBJ_MEM = $(SRC_MEM:%.c=$(OBJDIR)/%.o)
@@ -76,18 +82,22 @@ OBJ_PRINTF = $(SRC_PRINTF:%.c=$(OBJDIR)/%.o)
 OBJ_PUT = $(SRC_PUT:%.c=$(OBJDIR)/%.o)
 OBJ_STR = $(SRC_STR:%.c=$(OBJDIR)/%.o)
 
-OBJS = $(OBJ_CHAR) $(OBJ_LST) $(OBJ_MEM) $(OBJ_MISC) $(OBJ_NUM) \
+OBJS = $(OBJ_BST) $(OBJ_CHAR) $(OBJ_LST) $(OBJ_MEM) $(OBJ_MISC) $(OBJ_NUM) \
 			 $(OBJ_PRINTF) $(OBJ_PUT) $(OBJ_STR)
 
 INC = includes/
 
-GCC = gcc -Werror -Wextra -Wall -O3
+GCC = gcc -Werror -Wextra -Wall -g
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
+
+$(OBJ_BST): $(OBJDIR)/%.o: $(SD_BST)/%.c $(INC)/libft.h $(INC)/ft_printf.h
+	@[ -d $(@D) ] || mkdir -p $(@D)
+	$(GCC) -c $< -o $@ -I $(INC)
 
 $(OBJ_CHAR): $(OBJDIR)/%.o: $(SD_CHAR)/%.c $(INC)/libft.h $(INC)/ft_printf.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
