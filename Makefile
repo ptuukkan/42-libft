@@ -12,8 +12,6 @@
 
 NAME = libft.a
 
-.SILENT: *.o
-
 SD_BST = srcs/ft_bst
 SD_CHAR = srcs/ft_char
 SD_LST = srcs/ft_lst

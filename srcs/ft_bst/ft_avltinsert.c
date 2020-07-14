@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-static t_avltree	*rotate(t_avltree *root, int balance, int cmpresult)
+static t_avltree	*rotate(t_avltree *root, int balance, int new)
 {
-	if (balance > 1 && cmpresult < 1)
+	if (balance > 1 && new <= *(int *)root->left->content)
 		return (ft_avltrotate_right(root));
-	if (balance > 1 && cmpresult == 1)
+	if (balance > 1 && new > *(int *)root->left->content)
 	{
 		root->left = ft_avltrotate_left(root->left);
 		return (ft_avltrotate_right(root));
 	}
-	if (balance < -1 && cmpresult == 1)
+	if (balance < -1 && new > *(int *)root->right->content)
 		return (ft_avltrotate_left(root));
-	if (balance < -1 && cmpresult < 1)
+	if (balance < -1 && new <= *(int *)root->right->content)
 	{
 		root->right = ft_avltrotate_right(root->right);
 		return (ft_avltrotate_left(root));
@@ -34,13 +34,11 @@ static t_avltree	*rotate(t_avltree *root, int balance, int cmpresult)
 t_avltree			*ft_avltinsert(t_avltree *root, t_avltree *newavlt,
 									int (*cmp)(void *, void *))
 {
-	int	cmpresult;
 	int	balance;
 
 	if (!root)
 		return (newavlt);
-	cmpresult = (*cmp)(newavlt->content, root->content);
-	if (cmpresult > 0)
+	if ((*cmp)(newavlt->content, root->content) > 0)
 		root->right = ft_avltinsert(root->right, newavlt, cmp);
 	else
 		root->left = ft_avltinsert(root->left, newavlt, cmp);
@@ -48,6 +46,6 @@ t_avltree			*ft_avltinsert(t_avltree *root, t_avltree *newavlt,
 		ft_avltheight(root->left));
 	balance = ft_avltbalance(root);
 	if (balance > 1 || balance < -1)
-		return rotate(root, balance, cmpresult);
+		return rotate(root, balance, *(int *)newavlt->content);
 	return root;
 }

@@ -28,7 +28,7 @@ t_avltree				*ft_avltnew(void const *content, size_t content_size);
 t_avltree				*ft_avltinsert(t_avltree *root, t_avltree *newavlt,
 										int (*cmp)(void *, void *));
 int						ft_avltheight(t_avltree *node);
-void					ft_avltprint(t_avltree *node);
+void					ft_avltprint(t_avltree *node, int depth);
 void					ft_avltapply_level(t_avltree *root,
 										void (*applyf)(t_avltree *, int));
 t_avltree				*ft_avltrotate_right(t_avltree *node);

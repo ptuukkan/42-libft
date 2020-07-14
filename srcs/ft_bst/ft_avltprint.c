@@ -87,7 +87,7 @@ static void	apply_level(t_avltree *root, int level, int *first,
 	apply_level(root->right, level - 1, first, applyf, root->height);
 }
 
-void		ft_avltprint(t_avltree *node)
+void		ft_avltprint(t_avltree *node, int depth)
 {
 	int	level;
 	int	first;
@@ -100,7 +100,8 @@ void		ft_avltprint(t_avltree *node)
 	ft_printf("%*d\n", field, *(int *)node->content);
 	prev_height = node->height;
 	level = 0;
-	while (level < node->height - 1)
+	depth = ft_min(node->height, depth);
+	while (level < depth - 1)
 	{
 		first = 1;
 		apply_level(node, level, &first, &print_slashes, prev_height);
