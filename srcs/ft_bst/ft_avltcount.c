@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_avltheight.c                                    :+:      :+:    :+:   */
+/*   ft_avltcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-int	ft_avltheight(t_avltree *node)
+int	ft_avltcount(t_avltree *node)
 {
 	if (!node)
 		return (0);
-	return node->height;
+	return (1 + ft_avltcount(node->left) + ft_avltcount(node->right));
 }

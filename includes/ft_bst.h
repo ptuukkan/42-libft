@@ -34,5 +34,6 @@ void					ft_avltapply_level(t_avltree *root,
 t_avltree				*ft_avltrotate_right(t_avltree *node);
 t_avltree				*ft_avltrotate_left(t_avltree *node);
 int						ft_avltbalance(t_avltree *node);
+int						ft_avltcount(t_avltree *node);
 
 #endif
