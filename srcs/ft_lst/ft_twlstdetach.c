@@ -12,31 +12,32 @@
 
 #include "libft.h"
 
-t_twlist	*ft_twlstdetach(t_twlist **alst)
+static t_twlist	*clean(t_twlist *lst)
+{
+	lst->end = 0;
+	lst->next = NULL;
+	lst->prev = NULL;
+	return (lst);
+}
+
+t_twlist		*ft_twlstdetach(t_twlist **alst)
 {
 	int			size;
 	t_twlist	*lst;
 
+	if (*alst == NULL)
+		return (NULL);
 	lst = *alst;
 	size = ft_twlstcount(lst);
-	*alst = (*alst)->next;
-	if (size != 1 && !lst->prev)
-		return (NULL);
-	if (size == 2)
+	if (size == 1)
+		*alst = NULL;
+	else
 	{
-		lst->prev->next = NULL;
-		lst->prev->prev = NULL;
-		lst->prev->end = 1;
-	}
-	else if (size > 2)
-	{
-		if (lst->end)
-			lst->prev->end = 1;
 		lst->prev->next = lst->next;
 		lst->next->prev = lst->prev;
+		if (lst->end)
+			lst->prev->end = 1;
+		*alst = lst->next;
 	}
-	lst->end = 0;
-	lst->prev = NULL;
-	lst->next = NULL;
-	return (lst);
+	return (clean(lst));
 }

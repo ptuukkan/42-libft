@@ -21,17 +21,17 @@ void	ft_twlstapp(t_twlist **alst, t_twlist *new)
 	if (*alst == NULL)
 	{
 		*alst = new;
+		(*alst)->next = *alst;
+		(*alst)->prev = *alst;
 		(*alst)->end = 1;
 		return ;
 	}
 	temp = *alst;
-	while (temp->end == 0)
-		temp = temp->next;
-	new->next = temp->next;
 	new->end = 1;
-	temp->next = new;
 	temp->end = 0;
-	new->prev = temp;
-	if (new->next)
-		new->next->prev = new;
+	temp->prev->end = 0;
+	new->next = temp;
+	new->prev = temp->prev;
+	temp->prev->next = new;
+	temp->prev = new;
 }

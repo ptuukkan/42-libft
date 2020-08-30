@@ -19,16 +19,17 @@ void	ft_twlstadd(t_twlist **alst, t_twlist *new)
 	if (*alst == NULL)
 	{
 		*alst = new;
+		(*alst)->next = *alst;
+		(*alst)->prev = *alst;
 		(*alst)->end = 1;
+		return ;
 	}
 	else
 	{
 		new->next = *alst;
-		if ((*alst)->prev)
-			(*alst)->prev->next = new;
 		new->prev = (*alst)->prev;
+		(*alst)->prev->next = new;
 		(*alst)->prev = new;
 		*alst = new;
-		(*alst)->end = 0;
 	}
 }

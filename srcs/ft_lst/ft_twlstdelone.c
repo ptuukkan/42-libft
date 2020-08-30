@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_twlstconnect.c                                  :+:      :+:    :+:   */
+/*   ft_twlstdelone.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 15:02:38 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/10/22 15:02:58 by ptuukkan         ###   ########.fr       */
+/*   Created: 2019/10/22 15:01:40 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/10/22 15:01:42 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_twlstconnect(t_twlist *lst)
+void	ft_twlstdelone(t_twlist **alst, void (*del)(void *, size_t))
 {
 	t_twlist	*tmp;
 
-	tmp = lst;
-	if (!tmp->next)
-		return ;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = lst;
-	lst->prev = tmp;
+	if (*alst != NULL)
+	{
+		tmp = *alst;
+		if (tmp->end)
+			tmp->prev->end = 1;
+		tmp->prev->next = tmp->next;
+		tmp->next->prev = tmp->prev;
+		if (tmp->content != NULL)
+			(*del)(tmp->content, tmp->content_size);
+		free(tmp);
+		tmp = NULL;
+	}
 }

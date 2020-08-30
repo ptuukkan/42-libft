@@ -33,8 +33,8 @@ SRC_LST = ft_lstadd.c ft_lstapp.c ft_lstcapitalize.c ft_lstchr.c \
 			ft_lstcount.c ft_lstdel.c ft_lstdelone.c ft_lstfold.c \
 			ft_lstfree.c ft_lstiter.c ft_lstjoin.c ft_lstmap.c ft_lstnew.c \
 			ft_lstpop.c ft_lstprint.c ft_lstsize.c ft_lsttolower.c \
-			ft_lsttoupper.c ft_twlstadd.c ft_twlstapp.c ft_twlstconnect.c \
-			ft_twlstcount.c ft_twlstdetach.c ft_twlstnew.c
+			ft_lsttoupper.c ft_twlstadd.c ft_twlstapp.c \
+			ft_twlstcount.c ft_twlstdelone.c ft_twlstdetach.c ft_twlstnew.c
 
 SRC_MEM = ft_bzero.c ft_memalloc.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
 			ft_memcpy.c ft_memdel.c ft_memdup.c ft_memmove.c ft_memset.c
