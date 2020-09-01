@@ -46,6 +46,6 @@ t_avltree			*ft_avltinsert(t_avltree *root, t_avltree *newavlt,
 		ft_avltheight(root->left));
 	balance = ft_avltbalance(root);
 	if (balance > 1 || balance < -1)
-		return rotate(root, balance, *(int *)newavlt->content);
+		return (rotate(root, balance, *(int *)newavlt->content));
 	return root;
 }

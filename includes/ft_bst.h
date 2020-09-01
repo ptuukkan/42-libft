@@ -24,6 +24,14 @@ typedef struct			s_avltree
 	struct s_avltree	*left;
 }						t_avltree;
 
+typedef struct			s_btree
+{
+	void				*content;
+	size_t				content_size;
+	struct s_btree		*right;
+	struct s_btree		*left;
+}						t_btree;
+
 t_avltree				*ft_avltnew(void const *content, size_t content_size);
 t_avltree				*ft_avltinsert(t_avltree *root, t_avltree *newavlt,
 										int (*cmp)(void *, void *));
@@ -35,5 +43,7 @@ t_avltree				*ft_avltrotate_right(t_avltree *node);
 t_avltree				*ft_avltrotate_left(t_avltree *node);
 int						ft_avltbalance(t_avltree *node);
 int						ft_avltcount(t_avltree *node);
+t_btree					*ft_btreenew(void const *content, size_t content_size);
+void					ft_btreeprefix(t_btree *root, void (*applyf)(void *));
 
 #endif

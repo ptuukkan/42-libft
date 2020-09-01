@@ -24,7 +24,8 @@ SD_STR = srcs/ft_str
 
 SRC_BST = ft_avltapply_level.c ft_avltbalance.c ft_avltcount.c \
 			ft_avltheight.c ft_avltinsert.c ft_avltnew.c ft_avltprint.c \
-			ft_avltrotate_left.c ft_avltrotate_right.c
+			ft_avltrotate_left.c ft_avltrotate_right.c ft_btreenew.c \
+			ft_btreeprefix.c
 
 SRC_CHAR = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_tolower.c ft_toupper.c
