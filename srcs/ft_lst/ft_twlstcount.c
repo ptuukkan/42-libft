@@ -22,7 +22,7 @@ int		ft_twlstcount(t_twlist *lst)
 		i++;
 		if (lst->end == 1)
 			break ;
-		lst = lst->next; 
+		lst = lst->next;
 	}
 	return (i);
 }
