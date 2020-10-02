@@ -16,5 +16,5 @@ int	ft_avltheight(t_avltree *node)
 {
 	if (!node)
 		return (0);
-	return node->height;
+	return (node->height);
 }

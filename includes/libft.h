@@ -167,6 +167,7 @@ void				ft_twlstadd(t_twlist **alst, t_twlist *new);
 void				ft_twlstapp(t_twlist **alst, t_twlist *new);
 int					ft_twlstcount(t_twlist *lst);
 t_twlist			*ft_twlstdetach(t_twlist **alst);
-void				ft_twlstdelone(t_twlist **alst, void (*del)(void *, size_t));
+void				ft_twlstdelone(t_twlist **alst,
+								void (*del)(void *, size_t));
 
 #endif
