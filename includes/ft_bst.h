@@ -45,5 +45,7 @@ int						ft_avltbalance(t_avltree *node);
 int						ft_avltcount(t_avltree *node);
 t_btree					*ft_btreenew(void const *content, size_t content_size);
 void					ft_btreeprefix(t_btree *root, void (*applyf)(void *));
+void					ft_btreefree(void *content);
+void					ft_btreedel(t_btree *node, void (*del)(void *));
 
 #endif

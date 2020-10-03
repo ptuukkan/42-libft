@@ -66,7 +66,7 @@ char		**ft_strsplit(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	tab = (char **)ft_memalloc(sizeof(char *) * ft_wordcount(s, c) + 1);
+	tab = (char **)ft_memalloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
 	if (tab == NULL)
 		return (NULL);
 	if (split_string(&tab, s, c) == 0)

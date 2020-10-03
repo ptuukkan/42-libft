@@ -25,7 +25,7 @@ SD_STR = srcs/ft_str
 SRC_BST = ft_avltapply_level.c ft_avltbalance.c ft_avltcount.c \
 			ft_avltheight.c ft_avltinsert.c ft_avltnew.c ft_avltprint.c \
 			ft_avltrotate_left.c ft_avltrotate_right.c ft_btreenew.c \
-			ft_btreeprefix.c
+			ft_btreeprefix.c ft_btreedel.c ft_btreefree.c
 
 SRC_CHAR = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			ft_isprint.c ft_tolower.c ft_toupper.c
@@ -35,7 +35,8 @@ SRC_LST = ft_lstadd.c ft_lstapp.c ft_lstcapitalize.c ft_lstchr.c \
 			ft_lstfree.c ft_lstiter.c ft_lstjoin.c ft_lstmap.c ft_lstnew.c \
 			ft_lstpop.c ft_lstprint.c ft_lstsize.c ft_lsttolower.c \
 			ft_lsttoupper.c ft_twlstadd.c ft_twlstapp.c \
-			ft_twlstcount.c ft_twlstdelone.c ft_twlstdetach.c ft_twlstnew.c
+			ft_twlstcount.c ft_twlstdelone.c ft_twlstdetach.c ft_twlstnew.c \
+			ft_twlstdel.c
 
 SRC_MEM = ft_bzero.c ft_memalloc.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
 			ft_memcpy.c ft_memdel.c ft_memdup.c ft_memmove.c ft_memset.c
