@@ -87,7 +87,7 @@ OBJS = $(OBJ_BST) $(OBJ_CHAR) $(OBJ_LST) $(OBJ_MEM) $(OBJ_MISC) $(OBJ_NUM) \
 
 INC = includes/
 
-GCC = gcc -Werror -Wextra -Wall -g
+GCC = gcc -Werror -Wextra -Wall -O3
 
 all: $(NAME)
 
