@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2021/07/29 16:25:03 by ptuukkan         ###   ########.fr        #
+#    Updated: 2021/07/29 16:53:53 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC_BST = ft_avltapply_level.c ft_avltbalance.c ft_avltcount.c \
 			ft_btreeprefix.c ft_btreedel.c ft_btreefree.c
 
 SRC_CHAR = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
-			ft_isprint.c ft_tolower.c ft_toupper.c
+			ft_isprint.c ft_tolower.c ft_toupper.c ft_ishex.c
 
 SRC_LST = ft_lstadd.c ft_lstapp.c ft_lstcapitalize.c ft_lstchr.c \
 			ft_lstcount.c ft_lstdel.c ft_lstdelone.c ft_lstfold.c \
