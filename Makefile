@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2020/07/05 12:40:28 by ptuukkan         ###   ########.fr        #
+#    Updated: 2021/07/29 16:25:03 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,14 +41,15 @@ SRC_LST = ft_lstadd.c ft_lstapp.c ft_lstcapitalize.c ft_lstchr.c \
 SRC_MEM = ft_bzero.c ft_memalloc.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
 			ft_memcpy.c ft_memdel.c ft_memdup.c ft_memmove.c ft_memset.c
 
-SRC_MISC = ft_exiterror.c get_next_line.c
+SRC_MISC = ft_exiterror.c get_next_line.c get_next_number.c
 
-SRC_NUM = ft_abs.c ft_atoi.c ft_atoll.c ft_atoul.c ft_ceil.c ft_ctoi.c \
-			ft_dbllen.c ft_dtoa_hex_round.c ft_dtoa_hex.c ft_dtoa_round.c \
-			ft_dtoa.c ft_hexincr.c ft_itoa.c ft_ldtoa_hex_round.c \
-			ft_ldtoa_hex.c ft_ldtoa.c ft_ltoa.c ft_max.c ft_min.c ft_nbrlen.c \
-			ft_numcmp.c ft_pow.c ft_ultoa_base.c parse_double.c \
-			vlq_divide_2.c vlq_multiply_2.c vlq_sum.c
+SRC_NUM = ft_abs.c ft_atoi.c ft_atoi_base.c ft_atoll.c ft_atoul.c ft_ceil.c \
+			ft_ctoi.c ft_dbllen.c ft_dmax.c ft_dmin.c ft_dtoa_hex_round.c \
+			ft_dtoa_hex.c ft_dtoa_round.c ft_dtoa.c ft_hexincr.c ft_itoa.c \
+			ft_ldtoa_hex_round.c ft_ldtoa_hex.c ft_ldtoa.c ft_ltoa.c \
+			ft_max.c ft_min.c ft_nbrlen.c ft_numcmp.c ft_pow.c \
+			ft_ultoa_base.c parse_double.c vlq_divide_2.c \
+			vlq_multiply_2.c vlq_sum.c
 
 SRC_PRINTF = adjust_flags.c adjust_flags2.c convert_a.c convert_b.c \
 				convert_c.c convert_d.c convert_double.c convert_e.c \

@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:52:25 by ptuukkan          #+#    #+#             */
-/*   Updated: 2019/11/06 09:36:10 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2021/07/29 16:24:36 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char				*ft_strnstr(const char *s1, const char *s2, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
+int					ft_atoi_base(const char *nbr, unsigned int base);
 long long			ft_atoll(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
@@ -128,6 +129,7 @@ void				ft_lstfree(void *content, size_t content_size);
 t_list				*ft_lstchr(t_list *lst, int c);
 int					ft_lstcount(t_list *lst);
 int					get_next_line(const int fd, char **line);
+int					get_next_number(char **line, intmax_t *number);
 char				*ft_strreplace(char *search, char *replace, char **subject);
 void				ft_exiterror(char *err_msg, int exitcode, int fd);
 char				*ft_dtoa(double dbl, int prec);
@@ -137,7 +139,9 @@ char				*ft_dtoa_hex(double dbl, int prec, int upper);
 char				*ft_ldtoa_hex(long double dbl, int prec, int upper);
 char				*ft_ltoa(intmax_t n);
 int					ft_max(int a, int b);
+int					ft_dmax(double a, double b);
 int					ft_min(int a, int b);
+int					ft_dmin(double a, double b);
 int					ft_putnchar(char c, int count);
 char				*ft_strnjoin(int n, ...);
 char				*ft_ultoa_base(uintmax_t n, int base, int upper);
