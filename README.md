@@ -5,7 +5,7 @@ This is one of the first projects at Hive. Task is to create my own C library. T
 * Code must be complied with -Wall, -Wextra and -Werror flags.
 * Only the following functions are allowed: malloc, free, and write.
 ## Solution
-I created mandatory and bonus functions. In addition to that I have been adding many useful functions.
+I created mandatory and bonus functions. In addition to that I have been adding many useful functions, such as linked lists and binary tree.
 I have also included here two additional projects, get_next_line and ft_printf, both are very useful in the following projects.
 
 # get_next_line
