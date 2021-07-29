@@ -6,7 +6,7 @@
 /*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:52:25 by ptuukkan          #+#    #+#             */
-/*   Updated: 2021/07/29 16:53:43 by ptuukkan         ###   ########.fr       */
+/*   Updated: 2021/07/29 18:05:45 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,9 @@ char				*ft_dtoa_hex(double dbl, int prec, int upper);
 char				*ft_ldtoa_hex(long double dbl, int prec, int upper);
 char				*ft_ltoa(intmax_t n);
 int					ft_max(int a, int b);
-int					ft_dmax(double a, double b);
+double				ft_dmax(double a, double b);
 int					ft_min(int a, int b);
-int					ft_dmin(double a, double b);
+double				ft_dmin(double a, double b);
 int					ft_putnchar(char c, int count);
 char				*ft_strnjoin(int n, ...);
 char				*ft_ultoa_base(uintmax_t n, int base, int upper);
